@@ -5,8 +5,8 @@ Usage:
     python -m src.export_onnx              # exports TB model
     python -m src.export_onnx --disease dr
 
-ONNX Runtime runs the model on a cheap clinic CPU in ~12ms per image,
-vs ~40ms with full PyTorch. The exported file is also much smaller.
+ONNX Runtime is typically faster than PyTorch on CPU; this script measures both
+on the current machine and writes results/<disease>/cpu_benchmark.json.
 """
 import argparse
 import json
@@ -22,14 +22,16 @@ from src.model import load_trained
 
 
 def export(disease: str = "tb", runs: int = 30):
-    dcfg = config.DISEASES[disease]
+    dcfg = config.task_config(disease)
     model = load_trained("cpu", disease=disease)
 
     # Use a real test image for correctness check (random noise gives unrealistic diffs)
     splits_csv = dcfg["splits_csv"]
     if splits_csv.exists():
         import pandas as pd
-        path = pd.read_csv(splits_csv).query("split == 'test'")["path"].iloc[0]
+        from src.data import resolve_paths
+        df = resolve_paths(pd.read_csv(splits_csv), dcfg["data_dir"])
+        path = df.query("split == 'test'")["path"].iloc[0]
         dummy = eval_tfms(load_image(path, dcfg["image_mode"])).unsqueeze(0)
     else:
         dummy = torch.randn(1, 3, config.IMG_SIZE, config.IMG_SIZE)
@@ -71,6 +73,6 @@ def export(disease: str = "tb", runs: int = 30):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--disease", default="tb", choices=["tb", "dr", "oral"])
+    parser.add_argument("--disease", default="tb", choices=["tb", "dr", "oral", "gatekeeper"])
     args = parser.parse_args()
     export(args.disease)
