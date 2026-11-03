@@ -1,0 +1,47 @@
+{
+  "purpose": "Integration only; not clinical validation",
+  "cases": [
+    {
+      "disease": "tb",
+      "status": "NO_FLAG_DETECTED",
+      "score": 1.1484886596184622e-13,
+      "provider": "local_research",
+      "model_version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+      "raw_output": [
+        14.150845527648926,
+        -15.64431381225586
+      ],
+      "pdf_bytes": 35997,
+      "elapsed_seconds": 1.568
+    },
+    {
+      "disease": "dr",
+      "status": "SCREENING_FLAGGED",
+      "score": 0.9481590815002688,
+      "provider": "local_research",
+      "model_version": "retfound-aptos2019-ad280cbf1f32",
+      "raw_output": [
+        -0.35445326566696167,
+        2.3765363693237305,
+        0.4371296465396881,
+        -2.5083136558532715,
+        -0.8344411849975586
+      ],
+      "pdf_bytes": 36319,
+      "elapsed_seconds": 5.824
+    },
+    {
+      "disease": "oral",
+      "status": "SCREENING_FLAGGED",
+      "score": 0.6267923725997894,
+      "provider": "local_research",
+      "model_version": "swin-attention-cnn-author-demo-544e7daf0372",
+      "raw_output": [
+        -0.3383626341819763,
+        0.18011780083179474
+      ],
+      "pdf_bytes": 35967,
+      "elapsed_seconds": 2.778
+    }
+  ]
+}
