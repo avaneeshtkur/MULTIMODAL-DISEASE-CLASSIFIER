@@ -106,7 +106,7 @@ def _installed_hashes() -> dict:
 class ModelRegistry:
     def __init__(self, models_dir: Path | None = None, keys: list[str] | None = None):
         self.models_dir = Path(models_dir or config.MODELS_DIR)
-        self.keys = keys or list(config.MODEL_KEYS)
+        self.keys = list(config.MODEL_KEYS) if keys is None else list(keys)
         self.handles: dict[str, ModelHandle] = {}
         self.refresh()
 
