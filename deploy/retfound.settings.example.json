@@ -1,0 +1,24 @@
+{
+  "disease": "dr",
+  "runtime": "torchscript",
+  "model_version": "REPLACE_WITH_CHECKPOINT_AND_REVISION",
+  "source": "https://github.com/rmaphoh/RETFound/blob/main/BENCHMARK.md",
+  "license": "RECORD_VERIFIED_CHECKPOINT_TERMS",
+  "reference_revision": "REPLACE_WITH_FULL_REVIEWED_COMMIT",
+  "target_definition": "Any diabetic retinopathy (grades 1-4); excludes DME assessment",
+  "positive_class": "DR",
+  "class_labels": ["0", "1", "2", "3", "4"],
+  "positive_indices": [1, 2, 3, 4],
+  "output_activation": "softmax",
+  "preprocessing": {
+    "color_mode": "rgb", "resize": 256, "resize_mode": "shorter_side",
+    "center_crop": 224, "input_size": 224, "interpolation": "bicubic",
+    "scale": "0_1", "normalize": {"mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]}
+  },
+  "decision_policy": {
+    "threshold": null,
+    "uncertainty_margin": null,
+    "validation_source": "REPLACE_WITH_LOCKED_VALIDATION_MANIFEST"
+  },
+  "reference_atol": 0.00001
+}
