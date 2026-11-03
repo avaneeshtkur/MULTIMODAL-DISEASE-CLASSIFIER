@@ -84,6 +84,7 @@
 <p>Your image. A specialist model. An explainable result.</p>
 </div>
 <span class="status-badge" id="backend-status">Checking engine…</span>
+<p id="research-notice" class="small" role="note" hidden>Pretrained research evaluation: improved accuracy has not been established. Scores are experimental screening outputs. Review the recorded model pilots before interpreting results; the downloaded TB and oral candidates failed their pilot checks.</p>
 </div>
 <div class="workspace">
 <aside class="inspector">
@@ -107,13 +108,14 @@
 </div>
 <h3>Screening settings</h3>
 <label for="patient">Patient record</label><select id="patient" required><option value="">Select a patient</option></select>
+<label for="report-name">Patient name for report</label><input id="report-name" type="text" maxlength="120" placeholder="Enter name for this screening">
 <button type="button" id="new-patient" class="text-button">Create a demo patient +</button>
 <p class="small">For real patient registration and symptom questionnaires, <a class="text-link" href="/workspace/">open clinical workspace ↗</a>.</p>
-<label for="algorithm">Screening module</label><select id="algorithm"><option value="auto">Automatic routing</option><option value="tb">Tuberculosis · X-ray</option><option value="dr">Retinopathy · fundus</option><option value="oral">Oral cancer · histology</option></select>
-<label for="sample-select">Medical sample</label><select id="sample-select"><option value="tb">Chest X-ray</option><option value="dr">Retinal fundus</option><option value="oral">Histopathology</option></select>
+<label for="algorithm">Disease specialist</label><select id="algorithm" required><option value="" selected disabled>Choose a specialist</option><option value="tb">Tuberculosis · X-ray</option><option value="dr">Retinopathy · fundus</option><option value="oral">Oral cancer · histology</option></select>
+<p class="small" id="demo-details"></p><label for="sample-select">Medical sample</label><select id="sample-select"><option value="tb">Chest X-ray</option><option value="dr">Retinal fundus</option><option value="oral">Histopathology</option></select>
 <label class="check"><input id="explain" type="checkbox" checked> Generate Grad-CAM</label>
 <label class="check"><input id="rescreen" type="checkbox"> Allow identical-image re-screening</label>
-<p id="algorithm-help" class="small">Automatic routing uses the trained modality gatekeeper. Manual selection never skips image validation.</p>
+<p class="small">Supported: chest X-ray for TB, retinal fundus for DR, and oral histopathology. CT, MRI, documents and laboratory parameters are not supported by these image models.</p><p id="algorithm-help" class="small">Choose the disease specialist. Technical quality and basic image-type suitability are checked first; accepted images go directly to that specialist, which produces the disease score. The legacy modality classifier does not affect scoring.</p>
 <button class="button primary run-button" type="submit" id="run-button">Run screening <span aria-hidden="true">→</span></button>
 <button type="button" class="button secondary" id="compare-button" disabled>Inspect explanation</button>
 <p class="small">Screening aid only. Results require clinical review.</p>
@@ -155,6 +157,7 @@
 <div id="result-metrics" class="metrics">
 <p class="small">Screen an image to see measured results.</p>
 </div>
+<p id="image-quality" class="small"></p><a id="download-report" class="button primary" hidden>Download screening report (PDF) ↓</a><p id="report-status" class="small" role="status"></p>
 <div id="screening-result" aria-live="polite"></div><div class="result-bottom">
 <p class="small" id="result-settings">Model attention is not a lesion boundary or a diagnosis.</p>
 <a id="download-result" class="button secondary" hidden>Download PNG ↓</a>
@@ -219,7 +222,7 @@
 <div class="formula">
 <p class="eyebrow">SCORE & DECISION THRESHOLD</p>
 <p class="equation">Model score ≠ diagnostic certainty</p>
-<p>A specialist score is compared with its validated threshold. Scores within the uncertainty band return <strong>INCONCLUSIVE</strong>.</p>
+<p>The threshold is the cutoff for raising a screening flag. A score above it is flagged; a score below it gets no flag. For example, a 40% score exceeds a 25% threshold. These percentages are model outputs, not the chance of disease. Scores within the uncertainty band return <strong>INCONCLUSIVE</strong>.</p>
 <p class="small">Clinical accuracy requires independent validation. A no-flag result does not rule out disease. Review all results with a qualified healthcare professional.</p>
 </div>
 </section>
@@ -229,12 +232,24 @@
 <h2>Built for local care.<br>Grounded in evidence.</h2>
 </div>
 <div>
-<p>Mediscan AI is an experimental, offline screening aid for tuberculosis, diabetic retinopathy, and oral cancer. It supports clinical review without replacing it.</p>
-<p>ONNX Runtime powers CPU inference. Image validation, modality routing, uncertainty handling, and matched-checkpoint Grad-CAM connect to local patient records and English or Hindi PDF reports.</p>
+<p>Mediscan AI is an experimental screening aid for tuberculosis, diabetic retinopathy, and oral cancer. It supports clinical review without replacing it.</p>
+<p>Use installed local models or configured private remote specialists. Image validation, modality routing, and uncertainty handling connect to local patient records and automatic PDF reports. Model attention is available when the selected provider supports it.</p>
 <a href="/workspace/" class="text-link">Open clinical workspace ↗</a>
 </div>
 </section>
-</main>
+<dialog id="demo-dialog">
+<form id="demo-form">
+<h2>Create a demo patient</h2>
+<p>Use fictional patient details. The scan is saved locally for reuse. Reference labels never change model predictions.</p>
+<label for="demo-name">Patient name</label><input id="demo-name" name="name" required maxlength="120">
+<label for="demo-age">Age</label><input id="demo-age" name="age" type="number" min="0" max="120">
+<label for="demo-sex">Sex</label><select id="demo-sex" name="sex"><option value="">Not specified</option><option>Female</option><option>Male</option><option>Other</option></select>
+<label for="demo-notes">Patient details / diabetes history</label><textarea id="demo-notes" name="details" maxlength="2000"></textarea>
+<label for="demo-module">Disease testing</label><select id="demo-module" name="module"><option value="tb">TB · chest X-ray</option><option value="dr">DR · filtered fundus</option><option value="oral">Oral cancer · histopathology</option></select>
+<label for="demo-label">Reference label</label><select id="demo-label" name="expected_label"><option value="unknown">Unknown</option><option value="positive">Positive</option><option value="negative">Negative</option><option value="non-informative">Non-informative</option></select>
+<label for="demo-image">Scan</label><input id="demo-image" name="image" type="file" accept=".png,.jpg,.jpeg,.bmp" required>
+<p id="demo-error" role="alert"></p><button class="button primary" type="submit">Save demo patient</button><button class="button secondary" type="button" id="demo-cancel">Cancel</button>
+</form></dialog></main>
 <footer>
 <a class="brand" href="#home">Mediscan AI</a>
 <p>Local screening. Informed review.</p>
