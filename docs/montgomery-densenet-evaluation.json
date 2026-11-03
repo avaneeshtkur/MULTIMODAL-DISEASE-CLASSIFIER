@@ -1,0 +1,49 @@
+{
+  "model_version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+  "overall": {
+    "patients": 12,
+    "positives": 6,
+    "negatives": 6,
+    "flagged_positive": 0,
+    "flagged_negative": 0,
+    "unflagged_positive": 0,
+    "unflagged_negative": 0,
+    "undecided": 12,
+    "decision_coverage": 0.0,
+    "positive_flag_rate_all_patients": 0.0,
+    "positive_flag_rate_95ci": [
+      0,
+      0.3903430336530645
+    ],
+    "sensitivity_among_decided": null,
+    "specificity_among_decided": null,
+    "sensitivity_among_decided_95ci": null,
+    "specificity_among_decided_95ci": null,
+    "score_coverage": 0.0
+  },
+  "by_source": {
+    "NLM-Montgomery-audit12-overlap-unknown": {
+      "patients": 12,
+      "positives": 6,
+      "negatives": 6,
+      "flagged_positive": 0,
+      "flagged_negative": 0,
+      "unflagged_positive": 0,
+      "unflagged_negative": 0,
+      "undecided": 12,
+      "decision_coverage": 0.0,
+      "positive_flag_rate_all_patients": 0.0,
+      "positive_flag_rate_95ci": [
+        0,
+        0.3903430336530645
+      ],
+      "sensitivity_among_decided": null,
+      "specificity_among_decided": null,
+      "sensitivity_among_decided_95ci": null,
+      "specificity_among_decided_95ci": null,
+      "score_coverage": 0.0
+    }
+  },
+  "source_overlap_with_development": [],
+  "note": "Pretraining overlap and clinical reference labels require independent provenance review. Rejections are never negatives."
+}
