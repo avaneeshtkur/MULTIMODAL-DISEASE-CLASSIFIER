@@ -4,6 +4,7 @@ evaluate.py — honest scores on the untouched TEST set, per disease.
 Usage:
     python -m src.evaluate              # evaluates TB (default)
     python -m src.evaluate --disease dr
+    python -m src.evaluate --disease gatekeeper   # multi-class: accuracy + confusion matrix
 
 1. Pick the decision THRESHOLD on the VALIDATION set (never on test).
 2. Apply that threshold ONCE to the test set and report everything.
@@ -82,7 +83,7 @@ def plot_roc(y, p, auc, path, disease_name):
 
 
 def plot_history(path, disease):
-    hist_file = config.DISEASES[disease]["results_dir"] / "history.json"
+    hist_file = config.task_config(disease)["results_dir"] / "history.json"
     if not hist_file.exists():
         return
     h = json.loads(hist_file.read_text())
@@ -118,14 +119,36 @@ def gradcam_grid(model, df, probs, path, disease, n=4):
     fig.tight_layout(); fig.savefig(path, dpi=130); plt.close(fig)
 
 
+def evaluate_multiclass(disease: str, model, loaders, dcfg, device):
+    """Gatekeeper: no threshold; report accuracy, macro OvR AUC and the confusion matrix."""
+    from src.train import val_auc_score
+    yt, pt = predict(model, loaders["test"], device)
+    pred = pt.argmax(1)
+    labels = list(range(len(dcfg["classes"])))
+    cm = confusion_matrix(yt.astype(int), pred, labels=labels)
+    out = {"disease": disease, "name": dcfg["name"], "test_size": int(len(yt)), "classes": dcfg["classes"],
+           "accuracy": float((pred == yt).mean()), "macro_ovr_auc": float(val_auc_score(yt, pt)),
+           "confusion_matrix": cm.tolist(),
+           "per_class_recall": {c: float(cm[i, i] / cm[i].sum()) if cm[i].sum() else None
+                                for i, c in enumerate(dcfg["classes"])}}
+    results_dir = dcfg["results_dir"]
+    results_dir.mkdir(parents=True, exist_ok=True)
+    (results_dir / "metrics.json").write_text(json.dumps(out, indent=2))
+    plot_history(results_dir / "training_curve.png", disease)
+    print(f"[{disease}] Test accuracy {out['accuracy']:.4f} | macro AUC {out['macro_ovr_auc']:.4f}")
+    print("  per-class recall:", out["per_class_recall"])
+
+
 def evaluate(disease: str = "tb", num_workers: int = 2):
     seed_everything()
-    dcfg = config.DISEASES[disease]
+    dcfg = config.task_config(disease)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Evaluating [{disease}] {dcfg['name']} on {device}")
 
     loaders, df = get_loaders(disease=disease, num_workers=num_workers)
     model = load_trained(device, disease=disease)
+    if len(dcfg["classes"]) > 2:
+        return evaluate_multiclass(disease, model, loaders, dcfg, device)
 
     yv, pv = predict(model, loaders["val"], device)
     t = choose_threshold(yv, pv)
@@ -154,6 +177,6 @@ def evaluate(disease: str = "tb", num_workers: int = 2):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--disease", default="tb", choices=["tb", "dr", "oral"])
+    parser.add_argument("--disease", default="tb", choices=["tb", "dr", "oral", "gatekeeper"])
     args = parser.parse_args()
     evaluate(args.disease)
