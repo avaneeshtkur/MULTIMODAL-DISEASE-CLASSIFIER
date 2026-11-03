@@ -87,3 +87,38 @@
 2026-11-03 16:26:36,488 INFO mediscan.pipeline: session 11 → result 5: tb SCREENING_FLAGGED (101 ms)
 2026-11-03 16:31:59,815 INFO mediscan.pipeline: session 12 rejected: DUPLICATE_IMAGE (hash 5f5908c80d81)
 2026-11-03 16:32:11,773 INFO mediscan.pipeline: session 13 → result 6: tb SCREENING_FLAGGED (140 ms)
+2026-11-03 21:23:48,687 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 21:23:48,783 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 21:23:48,895 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 21:23:48,944 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 21:30:24,120 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 21:30:24,297 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 21:30:24,461 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 21:30:24,547 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 21:35:10,797 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 81 ms
+2026-11-03 21:35:10,868 INFO mediscan.registry: Loaded ONNX session for tb in 37 ms
+2026-11-03 21:35:15,348 INFO mediscan.pipeline: session 14 → result 7: tb NO_FLAG_DETECTED (105 ms)
+2026-11-03 21:36:48,683 INFO mediscan.pipeline: session 15 rejected: DUPLICATE_IMAGE (hash 456119bb1fc5)
+2026-11-03 21:36:59,913 INFO mediscan.pipeline: session 16 → result 8: tb NO_FLAG_DETECTED (67 ms)
+2026-11-03 21:47:08,027 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 21:47:08,125 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 21:47:08,235 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 21:47:08,284 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 21:47:35,539 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 217 ms
+2026-11-03 21:47:36,832 INFO mediscan.registry: Loaded ONNX session for tb in 1234 ms
+2026-11-03 21:47:37,546 INFO mediscan.pipeline: session 17 → result 9: tb SCREENING_FLAGGED (1922 ms)
+2026-11-03 21:59:32,670 INFO mediscan.pipeline: session 18 → result 10: tb NO_FLAG_DETECTED (99 ms)
+2026-11-03 22:55:37,036 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 22:55:37,745 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 22:55:38,597 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 22:55:39,394 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 22:56:39,347 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 761 ms
+2026-11-03 22:56:40,099 INFO mediscan.registry: Loaded ONNX session for tb in 198 ms
+2026-11-03 22:56:41,719 INFO mediscan.pipeline: session 19 → result 11: tb SCREENING_FLAGGED (1824 ms)
+2026-11-04 00:09:01,469 INFO mediscan.pipeline: session 20 → result 12: tb NO_FLAG_DETECTED (122 ms)
+2026-11-04 00:09:14,609 INFO mediscan.pipeline: session 21 → result 13: tb NO_FLAG_DETECTED (65 ms)
+2026-11-04 00:18:01,684 INFO mediscan.pipeline: session 22 → result 14: tb NO_FLAG_DETECTED (171 ms)
+2026-11-04 00:19:00,380 INFO mediscan.pipeline: session 23 rejected: DUPLICATE_IMAGE (hash 456119bb1fc5)
+2026-11-04 00:19:04,725 INFO mediscan.pipeline: session 24 → result 15: tb NO_FLAG_DETECTED (65 ms)
+2026-11-04 00:20:57,974 INFO mediscan.pipeline: session 25 → result 16: tb SCREENING_FLAGGED (63 ms)
+2026-11-04 00:23:42,974 INFO mediscan.pipeline: session 26 → result 17: tb NO_FLAG_DETECTED (57 ms)
