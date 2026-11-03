@@ -1,0 +1,89 @@
+2026-11-02 17:42:09,836 INFO mediscan.pipeline: session 1 rejected: MODEL_UNAVAILABLE (hash 5f5908c80d81)
+2026-11-02 17:42:10,109 INFO mediscan.pipeline: session 2 rejected: UNCERTAIN_MODALITY (hash a51b0818ff33)
+2026-11-02 17:43:34,871 INFO mediscan.registry: Model tb: [tb] OK
+2026-11-02 19:02:34,831 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 19:02:34,919 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 19:02:35,005 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 19:02:35,048 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 19:02:46,636 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 31 ms
+2026-11-02 19:02:46,680 INFO mediscan.registry: Loaded ONNX session for oral in 26 ms
+2026-11-02 19:02:50,573 INFO mediscan.pipeline: session 7 → result 4: oral SCREENING_FLAGGED (74 ms)
+2026-11-02 19:03:34,860 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 19:03:34,965 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 19:03:35,082 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 19:03:35,134 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:43:03,658 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:43:03,752 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:43:03,844 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:43:03,891 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:43:23,427 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:43:23,523 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:43:23,617 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:43:23,667 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:44:04,860 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:44:04,997 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:44:05,107 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:44:05,165 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:53:35,979 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:53:35,980 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:53:36,090 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:53:36,102 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:53:36,238 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:53:36,240 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:53:36,328 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:53:36,328 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:57:37,373 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:57:37,376 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:57:37,481 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:57:37,486 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:57:37,617 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:57:37,619 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:57:37,674 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:57:37,677 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:59:57,701 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:59:57,704 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 21:59:57,813 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:59:57,818 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 21:59:57,975 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:59:57,979 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 21:59:58,030 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 21:59:58,035 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 22:00:29,182 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 22:00:29,182 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 22:00:29,291 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 22:00:29,292 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 22:00:29,437 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 22:00:29,439 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 22:00:29,520 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-02 22:00:29,520 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 11:28:46,751 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 11:28:47,057 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 11:28:47,377 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 11:28:47,481 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 11:30:12,745 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 11:30:12,916 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 11:30:13,086 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 11:30:13,180 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 11:31:32,965 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 93 ms
+2026-11-03 11:31:33,046 INFO mediscan.registry: Loaded ONNX session for tb in 45 ms
+2026-11-03 11:31:40,922 INFO mediscan.pipeline: session 1 → result 1: tb SCREENING_FLAGGED (303 ms)
+2026-11-03 11:31:41,600 INFO mediscan.registry: Loaded ONNX session for dr in 330 ms
+2026-11-03 11:31:44,908 INFO mediscan.pipeline: session 2 → result 2: dr SCREENING_FLAGGED (591 ms)
+2026-11-03 11:31:45,098 INFO mediscan.registry: Loaded ONNX session for oral in 67 ms
+2026-11-03 11:31:47,157 INFO mediscan.pipeline: session 3 → result 3: oral SCREENING_FLAGGED (603 ms)
+2026-11-03 11:35:40,335 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 11:35:40,434 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 11:35:40,551 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 11:35:40,600 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 13:11:14,847 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-03 13:11:14,942 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-03 13:11:15,054 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-03 13:11:15,101 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+2026-11-03 16:07:31,113 INFO mediscan.pipeline: session 8 rejected: DUPLICATE_IMAGE (hash 884223ada92a)
+2026-11-03 16:24:08,622 INFO mediscan.pipeline: session 9 rejected: DUPLICATE_IMAGE (hash 5f5908c80d81)
+2026-11-03 16:26:21,867 INFO mediscan.pipeline: session 10 rejected: DUPLICATE_IMAGE (hash 5f5908c80d81)
+2026-11-03 16:26:31,490 INFO mediscan.registry: Loaded ONNX session for gatekeeper in 124 ms
+2026-11-03 16:26:31,642 INFO mediscan.registry: Loaded ONNX session for tb in 39 ms
+2026-11-03 16:26:36,488 INFO mediscan.pipeline: session 11 → result 5: tb SCREENING_FLAGGED (101 ms)
+2026-11-03 16:31:59,815 INFO mediscan.pipeline: session 12 rejected: DUPLICATE_IMAGE (hash 5f5908c80d81)
+2026-11-03 16:32:11,773 INFO mediscan.pipeline: session 13 → result 6: tb SCREENING_FLAGGED (140 ms)
