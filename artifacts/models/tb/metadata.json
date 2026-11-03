@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "model_key": "tb",
+  "architecture": "efficientnet_b0",
+  "preprocessing": {
+    "color_mode": "rgb",
+    "resize": 224,
+    "resize_mode": "exact",
+    "center_crop": null,
+    "input_size": 224,
+    "interpolation": "bilinear",
+    "scale": "0_1",
+    "normalize": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "fundus_border_crop": false
+  },
+  "conversion": {
+    "source": "external trained_outputs (Gemini/Colab)",
+    "source_metadata": {
+      "disease": "tb",
+      "architecture": "EfficientNet-B0",
+      "input_size": [
+        224,
+        224
+      ],
+      "input_channels": 3,
+      "input_color_order": "RGB",
+      "normalization_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalization_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "classes": [
+        "Normal",
+        "Tuberculosis"
+      ],
+      "threshold": 0.25747474747474747,
+      "threshold_selection_method": "validation",
+      "onnx_filename": "model.onnx",
+      "preprocessing_version": "1.0",
+      "metrics_file": "metrics.json"
+    },
+    "converted_at": "2026-11-02T13:30:50.531758+00:00",
+    "evidence": [
+      "ONNX (incl. external weights) matches hash-verified checkpoint: max |\u0394logit| 9.2e-06",
+      "preprocessing 'resize224_exact' selected: 0.980 vs 'resize256_centercrop224' 0.953 (accuracy at shipped threshold, 300 bundled images incl. training data \u2014 identification only, not performance)"
+    ],
+    "preprocessing_scores": {
+      "resize256_centercrop224": 0.9533333333333334,
+      "resize224_exact": 0.98
+    }
+  },
+  "model_version": "tb-aaa0b6fc",
+  "task": "binary",
+  "class_labels": [
+    "Normal",
+    "Tuberculosis"
+  ],
+  "positive_class": "Tuberculosis",
+  "output": {
+    "type": "logit",
+    "activation": "sigmoid"
+  },
+  "threshold": 0.25747474747474747,
+  "threshold_source": "source metadata (validation)",
+  "uncertainty_margin_logit": 0.25,
+  "calibration": null,
+  "metrics": {
+    "auc": 0.979757085020243,
+    "auc_95ci": [
+      0.9219737154150197,
+      1.0
+    ],
+    "accuracy": 0.9555555555555556,
+    "sensitivity": 0.9473684210526315,
+    "specificity": 0.9615384615384616,
+    "precision": 0.9473684210526315,
+    "f1": 0.9473684210526315,
+    "threshold": 0.25747474747474747,
+    "confusion_matrix": {
+      "tn": 25,
+      "fp": 1,
+      "fn": 1,
+      "tp": 18
+    },
+    "onnx_cpu_latency_ms": 17.830662727355957,
+    "onnx_size_bytes": 604308
+  },
+  "metrics_note": "Reported by the external training pipeline on its own held-out split; not re-measured by MediScan; small test set, not clinical validation.",
+  "sha256": {
+    "model.onnx": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+    "model.onnx.data": "dd2b50511dedab3a96e8b29715aba5c1c793417ed5daa2d5003e4b319d8df3cf",
+    "best_model.pth": "841d6cbb20bd60b88dbd9a1304598c2c7d3ccac5ef69ea1d713f36d816f2bf09"
+  }
+}
