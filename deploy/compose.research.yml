@@ -1,0 +1,22 @@
+services:
+  specialist:
+    build:
+      context: ..
+      dockerfile: services/research/Dockerfile
+      args:
+        MODEL_RUNTIME: ${MODEL_RUNTIME:-onnx}
+    environment:
+      MEDISCAN_SERVICE_TOKEN: ${MEDISCAN_SERVICE_TOKEN:?Set a private API token}
+    volumes:
+      - ${MEDISCAN_BUNDLE_PATH:?Set an absolute verified bundle path}:/models:ro
+    ports:
+      - "127.0.0.1:${MEDISCAN_SERVICE_PORT:-8000}:8000"
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    mem_limit: 4g
+    cpus: 2
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
