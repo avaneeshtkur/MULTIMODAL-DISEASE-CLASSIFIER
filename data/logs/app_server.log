@@ -1,0 +1,27 @@
+2026-11-02 19:03:34,860 INFO mediscan.registry: Model tb: [tb] OK (1 warning(s))
+2026-11-02 19:03:34,965 INFO mediscan.registry: Model dr: [dr] OK
+2026-11-02 19:03:35,082 INFO mediscan.registry: Model oral: [oral] OK
+2026-11-02 19:03:35,134 INFO mediscan.registry: Model gatekeeper: [gatekeeper] OK (1 warning(s))
+Traceback (most recent call last):
+  File "/Users/avaneeshthakur/Desktop/MULTIMODAL-DISEASE-CLASSIFIER/app.py", line 477, in <module>
+    build_ui().launch(theme=build_theme(), css=CSS, js=FORCE_LIGHT_JS, server_name=os.environ.get("MEDISCAN_HOST", "127.0.0.1"),
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      server_port=int(os.environ.get("MEDISCAN_PORT", "7860")),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      allowed_paths=[str(config.SAMPLES_DIR)], footer_links=[])
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avaneeshthakur/Desktop/MULTIMODAL-DISEASE-CLASSIFIER/.venv/lib/python3.13/site-packages/gradio/blocks.py", line 3422, in launch
+    ) = http_server.start_server(
+        ~~~~~~~~~~~~~~~~~~~~~~~~^
+        app=self.app,
+        ^^^^^^^^^^^^^
+    ...<4 lines>...
+        ssl_keyfile_password=ssl_keyfile_password,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/avaneeshthakur/Desktop/MULTIMODAL-DISEASE-CLASSIFIER/.venv/lib/python3.13/site-packages/gradio/http_server.py", line 182, in start_server
+    raise OSError(
+        f"Cannot find empty port in range: {min(server_ports)}-{max(server_ports)}. You can specify a different port by setting the GRADIO_SERVER_PORT environment variable or passing the `server_port` parameter to `launch()`."
+    )
+OSError: Cannot find empty port in range: 7860-7860. You can specify a different port by setting the GRADIO_SERVER_PORT environment variable or passing the `server_port` parameter to `launch()`.
