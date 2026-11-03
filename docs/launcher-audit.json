@@ -1,0 +1,70 @@
+[
+  {
+    "entry": "app.py",
+    "startup_seconds": 3.905,
+    "restart_seconds": 4.522,
+    "research_evaluation": false,
+    "cases": [
+      {
+        "disease": "tb",
+        "score": 0.8635,
+        "version": "tb-aaa0b6fc",
+        "screen_and_pdf_seconds": 0.704,
+        "cached_pdf_download_seconds": 0.008,
+        "pdf_bytes": 36058
+      },
+      {
+        "disease": "dr",
+        "score": 0.9946,
+        "version": "dr-4740a5c2",
+        "screen_and_pdf_seconds": 0.527,
+        "cached_pdf_download_seconds": 0.003,
+        "pdf_bytes": 35704
+      },
+      {
+        "disease": "oral",
+        "score": 0.98,
+        "version": "oral-ad94db8c",
+        "screen_and_pdf_seconds": 0.375,
+        "cached_pdf_download_seconds": 0.003,
+        "pdf_bytes": 35934
+      }
+    ],
+    "invalid_upload": "rejected without score",
+    "restart_persistence": "passed"
+  },
+  {
+    "entry": "run_pretrained.py",
+    "startup_seconds": 1.045,
+    "restart_seconds": 4.301,
+    "research_evaluation": true,
+    "cases": [
+      {
+        "disease": "tb",
+        "score": 2.540548115398093e-06,
+        "version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+        "screen_and_pdf_seconds": 0.583,
+        "cached_pdf_download_seconds": 0.002,
+        "pdf_bytes": 35978
+      },
+      {
+        "disease": "dr",
+        "score": 0.9481590815002688,
+        "version": "retfound-aptos2019-ad280cbf1f32",
+        "screen_and_pdf_seconds": 8.874,
+        "cached_pdf_download_seconds": 0.002,
+        "pdf_bytes": 36299
+      },
+      {
+        "disease": "oral",
+        "score": 0.6368434564751199,
+        "version": "swin-attention-cnn-author-demo-544e7daf0372",
+        "screen_and_pdf_seconds": 3.386,
+        "cached_pdf_download_seconds": 0.002,
+        "pdf_bytes": 35960
+      }
+    ],
+    "invalid_upload": "rejected without score",
+    "restart_persistence": "passed"
+  }
+]
