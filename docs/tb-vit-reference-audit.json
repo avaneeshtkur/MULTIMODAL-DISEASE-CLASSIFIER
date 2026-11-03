@@ -1,0 +1,210 @@
+{
+  "revision": "4388ed11fbfd0b0bc5f554920a9c9708485bd1d2",
+  "training_overlap": "unknown; not independent validation",
+  "cases": [
+    {
+      "file": "output/external/montgomery/MCUCXR_0022_0.png",
+      "patient_id": "MCUCXR_0022",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0022_0.png",
+      "sha256": "f032fd33169e783adf609278853f84f372577afde0dd4bc974da5401712c7860",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.957744799554348,
+        "class_id": 0,
+        "raw_probability": 0.04225520044565201,
+        "probabilities": {
+          "Normal": 0.957744799554348,
+          "Tuberculosis": 0.04225520044565201
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0090_0.png",
+      "patient_id": "MCUCXR_0090",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0090_0.png",
+      "sha256": "568492d74ccafa60dcafba488eb502a007e77a893a2c6223b676e0c2d4fdd8ab",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9992246633046307,
+        "class_id": 0,
+        "raw_probability": 0.000775336695369333,
+        "probabilities": {
+          "Normal": 0.9992246633046307,
+          "Tuberculosis": 0.000775336695369333
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0011_0.png",
+      "patient_id": "MCUCXR_0011",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0011_0.png",
+      "sha256": "a0395314047dc34f5ff19b2fc39dc8fc55e59055be318dbe6676bd6ee4b93793",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9992531718453392,
+        "class_id": 0,
+        "raw_probability": 0.0007468281546607614,
+        "probabilities": {
+          "Normal": 0.9992531718453392,
+          "Tuberculosis": 0.0007468281546607614
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0072_0.png",
+      "patient_id": "MCUCXR_0072",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0072_0.png",
+      "sha256": "55ca782f3acd41baa061d7f50c45db08908adcab95955e3f327202add91f86b9",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9989838425535709,
+        "class_id": 0,
+        "raw_probability": 0.0010161574464291334,
+        "probabilities": {
+          "Normal": 0.9989838425535709,
+          "Tuberculosis": 0.0010161574464291334
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0026_0.png",
+      "patient_id": "MCUCXR_0026",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0026_0.png",
+      "sha256": "9d7819bf3849a694bb76e611b73de7343c04f1cfdccaa89ff9d97e13169b6078",
+      "prediction": {
+        "prediction": "Tuberculosis",
+        "confidence": 0.9959763884544373,
+        "class_id": 1,
+        "raw_probability": 0.9959763884544373,
+        "probabilities": {
+          "Normal": 0.004023611545562744,
+          "Tuberculosis": 0.9959763884544373
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0099_0.png",
+      "patient_id": "MCUCXR_0099",
+      "label": 0,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0099_0.png",
+      "sha256": "6a67109cfff83eb267716da8ee64db494278bddd3080c99d5010b37c5f7f40d0",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9995472762966529,
+        "class_id": 0,
+        "raw_probability": 0.0004527237033471465,
+        "probabilities": {
+          "Normal": 0.9995472762966529,
+          "Tuberculosis": 0.0004527237033471465
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0140_1.png",
+      "patient_id": "MCUCXR_0140",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0140_1.png",
+      "sha256": "35bb134787b720bacdecf1b61413f6861a219f35c1d28676abd23ea0ea24c0bd",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9995791681285482,
+        "class_id": 0,
+        "raw_probability": 0.00042083187145181,
+        "probabilities": {
+          "Normal": 0.9995791681285482,
+          "Tuberculosis": 0.00042083187145181
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0218_1.png",
+      "patient_id": "MCUCXR_0218",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0218_1.png",
+      "sha256": "bf79a6c7f58a8dcf6cd13d28d8de524e6b68c883b45b1b07392057641ac25366",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9992277127457783,
+        "class_id": 0,
+        "raw_probability": 0.0007722872542217374,
+        "probabilities": {
+          "Normal": 0.9992277127457783,
+          "Tuberculosis": 0.0007722872542217374
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0182_1.png",
+      "patient_id": "MCUCXR_0182",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0182_1.png",
+      "sha256": "1eef095386026f67b3e0bddef42523ad84cfdfa801acf39a4bed2601178edec9",
+      "prediction": {
+        "prediction": "Normal",
+        "confidence": 0.9994767178432085,
+        "class_id": 0,
+        "raw_probability": 0.000523282156791538,
+        "probabilities": {
+          "Normal": 0.9994767178432085,
+          "Tuberculosis": 0.000523282156791538
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0383_1.png",
+      "patient_id": "MCUCXR_0383",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0383_1.png",
+      "sha256": "32089155eb977431f7b0ddfd8ee15e62f39c8e814896960228bae639a841f27b",
+      "prediction": {
+        "prediction": "Tuberculosis",
+        "confidence": 0.9967610239982605,
+        "class_id": 1,
+        "raw_probability": 0.9967610239982605,
+        "probabilities": {
+          "Normal": 0.003238976001739502,
+          "Tuberculosis": 0.9967610239982605
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0334_1.png",
+      "patient_id": "MCUCXR_0334",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0334_1.png",
+      "sha256": "8116e234cc72927fa74937ff4a22e8c794ff09af4d1e7237b163fa232667b11b",
+      "prediction": {
+        "prediction": "Tuberculosis",
+        "confidence": 0.9941129088401794,
+        "class_id": 1,
+        "raw_probability": 0.9941129088401794,
+        "probabilities": {
+          "Normal": 0.005887091159820557,
+          "Tuberculosis": 0.9941129088401794
+        }
+      }
+    },
+    {
+      "file": "output/external/montgomery/MCUCXR_0117_1.png",
+      "patient_id": "MCUCXR_0117",
+      "label": 1,
+      "source_url": "https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/CXR_png/MCUCXR_0117_1.png",
+      "sha256": "2e8b6b7e00a81b2d98b056bd8898e292aa8177b18e6650de8d31311edb5ed562",
+      "prediction": {
+        "prediction": "Tuberculosis",
+        "confidence": 0.9975839853286743,
+        "class_id": 1,
+        "raw_probability": 0.9975839853286743,
+        "probabilities": {
+          "Normal": 0.0024160146713256836,
+          "Tuberculosis": 0.9975839853286743
+        }
+      }
+    }
+  ]
+}
