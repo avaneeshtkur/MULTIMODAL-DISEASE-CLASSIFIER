@@ -1,0 +1,14 @@
+.git
+.venv
+.env
+data
+artifacts
+models
+output
+results
+__pycache__
+**/__pycache__
+*.db
+*.log
+providers.local.json
+*.jobs.lock
