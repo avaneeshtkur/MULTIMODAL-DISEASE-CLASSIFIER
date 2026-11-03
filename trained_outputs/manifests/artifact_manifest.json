@@ -1,0 +1,25 @@
+{
+  "project_name": "MEDISCAN AI",
+  "models": {
+    "tb": {
+      "checkpoint_sha256": "841d6cbb20bd60b88dbd9a1304598c2c7d3ccac5ef69ea1d713f36d816f2bf09",
+      "onnx_sha256": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+      "file_size_onnx_mb": 0.5763130187988281
+    },
+    "dr": {
+      "checkpoint_sha256": "f7b006f5b877a695985eac7054dfd81499f8bfa1172761989a8446d7e7f0dcdf",
+      "onnx_sha256": "4740a5c2a71cbae4b9979dff64c69c569310749d3f8fae1448e92777f1040997",
+      "file_size_onnx_mb": 0.5763130187988281
+    },
+    "oral": {
+      "checkpoint_sha256": "efadc0e9c44e6ef5c2b253a21d9bf7c7d4ec815d38dcea919a43c72f727fceba",
+      "onnx_sha256": "ad94db8cf45101a043881886a06bf9c01209e493ac19f2b4536df50a104795b6",
+      "file_size_onnx_mb": 0.5763130187988281
+    },
+    "gatekeeper": {
+      "checkpoint_sha256": "1ea90054186884c23a1e932682980cbf2d194a4784a5262bdc3103944be26947",
+      "onnx_sha256": "6e0d292e933031a8306563032e97f3d0f5365c685f6088ef85941cd5c79f4a28",
+      "file_size_onnx_mb": 0.27895259857177734
+    }
+  }
+}
