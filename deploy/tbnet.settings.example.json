@@ -1,0 +1,15 @@
+{
+  "disease": "tb", "runtime": "tbnet_tf",
+  "model_version": "REPLACE_WITH_CHECKPOINT_AND_REVISION",
+  "source": "https://github.com/darwinai/TuberculosisNet",
+  "license": "RESOLVE_UPSTREAM_CODE_AND_WEIGHT_TERMS",
+  "reference_revision": "REPLACE_WITH_FULL_REVIEWED_COMMIT",
+  "target_definition": "TB screening on frontal chest X-ray",
+  "positive_class": "Tuberculosis",
+  "class_labels": ["Normal", "Tuberculosis"], "positive_indices": [1],
+  "output_activation": "softmax", "preprocessing": {"kind": "tbnet_reference"},
+  "preprocessing_file": "preprocessing.py", "checkpoint_prefix": "model",
+  "decision_policy": {"threshold": null, "uncertainty_margin": null,
+                      "validation_source": "REPLACE_WITH_LOCKED_VALIDATION_MANIFEST"},
+  "reference_atol": 0.00001
+}
