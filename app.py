@@ -31,7 +31,7 @@ setup_logging()
 log = get_logger("app")
 ctx = build_context()
 
-MODULE_CHOICES = [("Automatic — trained gatekeeper detects the image type", "auto"),
+MODULE_CHOICES = [("Choose a specialist", "select"),
                   ("Tuberculosis — chest X-ray", "tb"),
                   ("Diabetic retinopathy — retinal fundus photograph", "dr"),
                   ("Oral cancer (OSCC) — histopathology", "oral")]
@@ -87,7 +87,7 @@ def preview(file):
 
 
 def on_module_change(module):
-    show = {k: module in ("auto", k) for k in ("tb", "dr", "oral")}
+    show = {k: module == k for k in ("tb", "dr", "oral")}
     return gr.update(visible=show["tb"]), gr.update(visible=show["dr"]), gr.update(visible=show["oral"])
 
 
@@ -269,11 +269,11 @@ def analytics(include_demo, include_sim, lang):
 # ── About ────────────────────────────────────────────────────────
 def about_md() -> str:
     parts = ["## Architecture",
-             "Upload → deterministic validation → SHA-256 duplicate check → gatekeeper (modality) → specialist "
+             "Upload → deterministic suitability checks → SHA-256 duplicate check → selected specialist "
              "EfficientNet-B0 (ONNX Runtime, CPU) → threshold + uncertainty band → Grad-CAM (PyTorch checkpoint) → "
              "rule-based clinical decision support → SQLite → PDF. See `docs/ARCHITECTURE.md`.",
              "## Installed models"]
-    for key in config.MODEL_KEYS:
+    for key in config.SPECIALIST_KEYS:
         h = ctx.registry.get(key)
         md = h.metadata
         parts.append(f"### {key.upper()} — {h.status}")
@@ -357,9 +357,9 @@ def build_ui() -> gr.Blocks:
                             is_demo = gr.Checkbox(True, label="Demo record (kept separate from real patients)")
                             reg_btn = gr.Button("Register patient")
                             reg_msg = gr.HTML()
-                        gr.Markdown("#### 2 · Screening module")
-                        module = gr.Radio(MODULE_CHOICES, value="auto", label="Routing", elem_id="ms-module",
-                                          info="Manual selection never skips image validation.")
+                        gr.Markdown("#### 2 · Disease specialist")
+                        module = gr.Radio(MODULE_CHOICES, value="select", label="Disease specialist", elem_id="ms-module",
+                                          info="The selected specialist scores the image after technical suitability checks.")
                         gr.Markdown("#### 3 · Symptoms & risk factors (optional)")
                         with gr.Accordion("Symptom questionnaire", open=False):
                             tb_cb = gr.CheckboxGroup(bool_choices("tb", "en"), label="TB: " + t("q.header", "en"))
@@ -486,7 +486,7 @@ if __name__ == "__main__":
     import uvicorn
     from src.ui.web import create_web_app
 
-    web_app = create_web_app(ctx)
+    web_app = create_web_app(ctx, legacy_workspace=True)
     web_app = gr.mount_gradio_app(
         web_app, build_ui(), path="/workspace", theme=build_theme(), css=CSS, js=THEME_JS,
         allowed_paths=[str(config.SAMPLES_DIR)], footer_links=[],
