@@ -142,6 +142,7 @@ GATEKEEPER_MIN_MARGIN = 0.20       # top-1 minus top-2 score required to route
 # ── Image quality thresholds (Stage A, deterministic) ────────────
 # Calibrated on the bundled datasets so valid images pass. See docs/ARCHITECTURE.md.
 QUALITY = {
+    "max_pixels": 16_000_000,       # bound decoded memory before img.load()
     "allowed_extensions": [".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff", ".webp"],
     "allowed_formats": ["PNG", "JPEG", "BMP", "TIFF", "WEBP", "MPO"],
     "max_file_mb": 25,
