@@ -60,7 +60,7 @@ flowchart TD
 | Recommendations, questionnaire rules, triage, EN/HI dictionary | `src/clinical/` |
 | SQLite schema and services | `src/database/` |
 | PDF reports | `src/reports/` |
-| Gradio UI pieces (theme, HTML components, Plotly charts) | `src/ui/`, `app.py` |
+| Responsive screening studio, HTTP bridge, and Gradio clinical workspace | `web/`, `src/ui/`, `app.py` |
 | Training pipeline (unchanged API, now also trains the gatekeeper) | `src/data.py`, `src/train.py`, `src/evaluate.py`, `src/export_onnx.py` |
 
 Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
@@ -117,6 +117,16 @@ pip install -r requirements.txt
 python scripts/make_demo_assets.py      # data/samples/ (test-split images + synthetic invalid inputs)
 python app.py                           # http://127.0.0.1:7860
 ```
+
+The main page at `/` uses a responsive, charcoal-and-mint imaging studio. Upload a medical image,
+select a patient (or create a demo record), run screening, inspect Grad-CAM, and export the current
+measurements as CSV. Theme preference is saved locally; images and results are not saved in browser storage.
+The complete Gradio clinical workspace remains at `/workspace/` for patient registration, symptom
+questionnaires, English/Hindi PDF reports, records, and analytics.
+
+The studio uses the same validation, routing, inference, explanation, and persistence pipeline as the
+clinical workspace. The hero and imaging workflow use bundled chest X-ray, retinal fundus, and oral
+histopathology samples. These previews show medical image types, not screening results.
 
 Without trained models the app starts in a clearly labelled **DEMO / INCOMPLETE-MODEL** state: validation,
 rejections, records, analytics and reports all work; specialist modules return a setup message.
