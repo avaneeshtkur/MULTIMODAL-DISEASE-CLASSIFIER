@@ -1,0 +1,33 @@
+{
+  "files": {
+    "models/tb/model.onnx": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+    "models/tb/model.onnx.data": "dd2b50511dedab3a96e8b29715aba5c1c793417ed5daa2d5003e4b319d8df3cf",
+    "models/tb/best_model.pth": "841d6cbb20bd60b88dbd9a1304598c2c7d3ccac5ef69ea1d713f36d816f2bf09",
+    "models/tb/metadata.json": "5a743a86d46b0857ccfbfa05226660d29b1232fbb9b1d7dc8a2698490de38ab3",
+    "results/tb/confusion_matrix.png": "34cbd9fce72ed581adee8717032e0931e51037b6bae12e7828a266652a5e6192",
+    "results/tb/gradcam_examples.png": "53910ff1b4b9b2c4fd42cecdcbcd95302edbb0851b17d68091133da17f80a3aa",
+    "results/tb/metrics.json": "a60edf419fdedd387166c0f39cfcaeecc6dc5874e2557cff0a4e0ffd72e92a2b",
+    "results/tb/roc_curve.png": "7ca14dd44d29c3d55b9a1bee73e8913f2b1fd3e317095887acd0653a1a758906",
+    "models/dr/model.onnx": "4740a5c2a71cbae4b9979dff64c69c569310749d3f8fae1448e92777f1040997",
+    "models/dr/model.onnx.data": "c2167b6f37dde48d0f24e8f425d5c97d5f0f3b55ec4dc6ebf3b1829f1814185f",
+    "models/dr/best_model.pth": "f7b006f5b877a695985eac7054dfd81499f8bfa1172761989a8446d7e7f0dcdf",
+    "models/dr/metadata.json": "7228fd8c101987a436b9e33d2c92b019c408bfffde38acba7efdba8f102e892d",
+    "results/dr/confusion_matrix.png": "b46d7fc39139a452f3d1104568a78b4253005411361d5ba171e9b82f88f53879",
+    "results/dr/gradcam_examples.png": "53910ff1b4b9b2c4fd42cecdcbcd95302edbb0851b17d68091133da17f80a3aa",
+    "results/dr/metrics.json": "d4f8199a9028080386ff88ad6fd3ac10f13d328f8d3670147a6bc6ac2af59dca",
+    "results/dr/roc_curve.png": "682e9eae2ddb6f47eee14f992f28ba493da6450843befb41e0aa7d74bfd4291d",
+    "models/oral/model.onnx": "ad94db8cf45101a043881886a06bf9c01209e493ac19f2b4536df50a104795b6",
+    "models/oral/model.onnx.data": "ea25e973bece39585d14217b791839992e617c9673259ca49bbff2156166f734",
+    "models/oral/best_model.pth": "efadc0e9c44e6ef5c2b253a21d9bf7c7d4ec815d38dcea919a43c72f727fceba",
+    "models/oral/metadata.json": "4ad2591bd8eb0bed224fcf207bc7ace108c4128b6b80793976f8341fdd0e74df",
+    "results/oral/confusion_matrix.png": "9b31717b67c61fd2f26dffc443831eb50b0df51104093eb47d1a4eac369e726a",
+    "results/oral/gradcam_examples.png": "53910ff1b4b9b2c4fd42cecdcbcd95302edbb0851b17d68091133da17f80a3aa",
+    "results/oral/metrics.json": "2776500e7be1ab4d1c72d85c28f7cd03726878c14b4337b80ba77dbab22a33d8",
+    "results/oral/roc_curve.png": "aa96b1813d4e873df75d8958a8531b9b52c747579fbf59b9a95db5e0b52c75bd",
+    "models/gatekeeper/model.onnx": "6e0d292e933031a8306563032e97f3d0f5365c685f6088ef85941cd5c79f4a28",
+    "models/gatekeeper/model.onnx.data": "615c5d38f05ad4697381a72c73b523f771123c9f00710ce67dd3b096b0c2e45a",
+    "models/gatekeeper/best_model.pth": "1ea90054186884c23a1e932682980cbf2d194a4784a5262bdc3103944be26947",
+    "models/gatekeeper/metadata.json": "0a9f1e7aad050196290c9bdf861a35d89ec510d62efefdf32e165fc828f12792"
+  },
+  "converted_from": "trained_outputs"
+}
