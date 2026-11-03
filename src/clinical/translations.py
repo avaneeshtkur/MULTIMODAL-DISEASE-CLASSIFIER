@@ -31,6 +31,7 @@ EN: dict[str, str] = {
     "modality.fundus": "Retinal fundus photograph",
     "modality.histopathology": "Oral histopathology",
     "routing.manual_selection": "selected manually (not verified by a trained classifier)",
+    "routing.selected_specialist": "sent directly to the selected disease specialist after suitability checks",
     "routing.trained_gatekeeper": "detected automatically by the trained gatekeeper model",
     "routing.manual_selection+trained_gatekeeper": "selected manually and confirmed by the gatekeeper model",
 
@@ -70,7 +71,7 @@ EN: dict[str, str] = {
                                   "prove that images belong to the same patient.",
     "reject.DUPLICATE_IMAGE.fix": "Check that you selected the right image. To screen it again deliberately, "
                                   "tick 'Allow re-screening of an identical file'.",
-    "reject.UNSUPPORTED_MODALITY.why": "This type of image is not supported (gatekeeper class: {label}).",
+    "reject.UNSUPPORTED_MODALITY.why": "This image type is not supported ({label}).",
     "reject.UNSUPPORTED_MODALITY.fix": "Upload a chest X-ray, a retinal fundus photograph or an oral histopathology image.",
     "reject.UNCERTAIN_MODALITY.why": "The image type could not be determined reliably ({reason}).",
     "reject.UNCERTAIN_MODALITY.fix": "Select the screening module manually, or upload a clearer image of a supported type.",
@@ -78,6 +79,8 @@ EN: dict[str, str] = {
     "reject.MODALITY_MISMATCH.fix": "Check the selected module or upload the correct image.",
     "reject.MODEL_UNAVAILABLE.why": "The {module} model is not installed or failed validation.",
     "reject.MODEL_UNAVAILABLE.fix": "Ask the administrator to import the trained model artifacts.",
+    "reject.DISEASE_SELECTION_REQUIRED.why": "Choose the disease specialist before screening; automatic disease routing is disabled.",
+    "reject.DISEASE_SELECTION_REQUIRED.fix": "Select Tuberculosis, Diabetic retinopathy, or Oral cancer to send the image to that specialist.",
 
     # ── Referral priority ────────────────────────────────────────
     "priority.ROUTINE": "Routine",
@@ -192,6 +195,7 @@ HI: dict[str, str] = {
     "modality.fundus": "रेटिना फंडस फोटो",
     "modality.histopathology": "मुख हिस्टोपैथोलॉजी",
     "routing.manual_selection": "स्वयं चुना गया (प्रशिक्षित वर्गीकरण मॉडल द्वारा सत्यापित नहीं)",
+    "routing.selected_specialist": "उपयुक्तता जाँच के बाद सीधे चुने गए रोग विशेषज्ञ को भेजा गया",
     "routing.trained_gatekeeper": "प्रशिक्षित गेटकीपर मॉडल द्वारा स्वचालित रूप से पहचाना गया",
     "routing.manual_selection+trained_gatekeeper": "स्वयं चुना गया और गेटकीपर मॉडल द्वारा पुष्टि की गई",
 
@@ -228,7 +232,7 @@ HI: dict[str, str] = {
                                   "सिद्ध नहीं करता कि छवियाँ एक ही रोगी की हैं।",
     "reject.DUPLICATE_IMAGE.fix": "जाँचें कि आपने सही छवि चुनी है। जानबूझकर दोबारा स्क्रीन करने के लिए "
                                   "'समान फ़ाइल की पुनः स्क्रीनिंग की अनुमति दें' चुनें।",
-    "reject.UNSUPPORTED_MODALITY.why": "इस प्रकार की छवि समर्थित नहीं है (गेटकीपर वर्ग: {label})।",
+    "reject.UNSUPPORTED_MODALITY.why": "यह छवि प्रकार समर्थित नहीं है ({label})।",
     "reject.UNSUPPORTED_MODALITY.fix": "छाती का एक्स-रे, रेटिना फंडस फोटो या मुख हिस्टोपैथोलॉजी छवि अपलोड करें।",
     "reject.UNCERTAIN_MODALITY.why": "छवि का प्रकार विश्वसनीय रूप से निर्धारित नहीं हो सका ({reason})।",
     "reject.UNCERTAIN_MODALITY.fix": "स्क्रीनिंग मॉड्यूल स्वयं चुनें, या समर्थित प्रकार की अधिक स्पष्ट छवि अपलोड करें।",
@@ -236,6 +240,8 @@ HI: dict[str, str] = {
     "reject.MODALITY_MISMATCH.fix": "चुना गया मॉड्यूल जाँचें या सही छवि अपलोड करें।",
     "reject.MODEL_UNAVAILABLE.why": "{module} मॉडल स्थापित नहीं है या सत्यापन में विफल रहा।",
     "reject.MODEL_UNAVAILABLE.fix": "प्रशासक से प्रशिक्षित मॉडल आर्टिफैक्ट आयात करने के लिए कहें।",
+    "reject.DISEASE_SELECTION_REQUIRED.why": "स्क्रीनिंग से पहले रोग विशेषज्ञ चुनें; स्वचालित रोग रूटिंग बंद है।",
+    "reject.DISEASE_SELECTION_REQUIRED.fix": "छवि संबंधित विशेषज्ञ को भेजने के लिए टीबी, डायबिटिक रेटिनोपैथी या ओरल कैंसर चुनें।",
 
     "priority.ROUTINE": "सामान्य (रूटीन)",
     "priority.PRIORITY": "प्राथमिकता के साथ रेफ़रल",
