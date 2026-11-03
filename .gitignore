@@ -20,3 +20,30 @@ ENV/
 Thumbs.db
 
 
+
+# MediScan AI runtime data (never commit patient data, reports or model binaries)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/logs/*.log*
+data/reports/
+data/retained_images/
+data/gatekeeper/
+artifacts/models/*/*
+!artifacts/models/*/.gitkeep
+artifacts/results/*
+!artifacts/results/.gitkeep
+artifacts/manifests/*
+!artifacts/manifests/.gitkeep
+artifacts/.staging-*/
+artifacts/.backup/
+models/
+results/
+trained_outputs.zip
+trained_outputs/
+trained_outputs_mediscan.zip
+*.onnx.data
+*.onnx
+*.pth
+*.pt
+.gradio/
