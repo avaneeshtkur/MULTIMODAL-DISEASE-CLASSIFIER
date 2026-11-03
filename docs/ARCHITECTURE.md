@@ -10,7 +10,7 @@ either `screening_results` or `rejection_events`.
 | 1 | Patient lookup and session creation (questionnaire stored on the session) | `database/screening_service.py` | error: patient required |
 | 2 | Stage A validation | `gatekeeper/image_quality.py` | `IMAGE_*` rejection |
 | 3 | Exact duplicate check (SHA-256 of file bytes) | `gatekeeper/duplicate_detector.py` | `DUPLICATE_IMAGE` (unless "allow re-screening") |
-| 4 | Stage B modality decision | `gatekeeper/classifier.py` | `UNSUPPORTED_MODALITY`, `UNCERTAIN_MODALITY`, `MODALITY_MISMATCH` |
+| 4 | Selected-disease suitability checks; no learned routing | `gatekeeper/classifier.py` | `DISEASE_SELECTION_REQUIRED`, `MODALITY_MISMATCH` |
 | 5 | Modality-specific blur floor | `image_quality.modality_blur_check` | `IMAGE_TOO_BLURRY` |
 | 6 | Model availability | `diseases/base.py` | `MODEL_UNAVAILABLE` |
 | 7 | Inference: metadata preprocessing → ONNX → score → threshold/band | `core/inference_engine.py` | `INCONCLUSIVE` with reason code |
@@ -20,7 +20,7 @@ either `screening_results` or `rejection_events`.
 
 ## Model registry and inference
 
-- `ModelRegistry` validates every `artifacts/models/<key>/` folder at startup with
+- `ModelRegistry` validates configured local disease-specialist `artifacts/models/<key>/` folders at startup with
   `artifact_validator.validate_model_dir`. It checks the metadata schema, the preprocessing spec, the
   positive-class position, the threshold range, SHA-256 (metadata and installed manifest), the ONNX checker,
   the input shape against the preprocessing, the dtype, and runs a test inference to check output width and
@@ -55,16 +55,22 @@ inference needs no torch. A test (`test_preprocess_matches_torchvision_eval_tran
 maximum difference is below 1e-6. During development it measured **0.0**. Unknown preprocessing keys
 are rejected rather than ignored.
 
-## Gatekeeper
+The legacy gatekeeper artifact is excluded from the runtime registry. It may remain
+on disk for historical evaluation, but screening never invokes it.
 
-| Situation | Behaviour |
-|---|---|
-| Trained gatekeeper, top score ≥ 0.80 and margin ≥ 0.20 | route to that modality |
-| Trained gatekeeper, below either limit | `UNCERTAIN_MODALITY` |
-| Trained gatekeeper predicts a non-supported class | `UNSUPPORTED_MODALITY` |
-| Manual selection + trained gatekeeper disagrees | `MODALITY_MISMATCH` |
-| No gatekeeper, automatic mode | `UNCERTAIN_MODALITY`. Automatic routing is disabled; a descriptive *heuristic hint* is shown but never used to route |
-| No gatekeeper, manual mode | conservative consistency checks only (multi-coloured image submitted as X-ray; greyscale image submitted as fundus/histopathology), plus a "not verified by a trained classifier" note |
+## Input suitability and specialist routing
+
+The user explicitly selects TB, DR, or oral cancer. The selected image passes the
+deterministic file, resolution, blur, exposure, and coarse modality-compatibility
+checks, then goes directly to that disease specialist. The specialist's output is
+the sole source of its disease score; suitability checks do not multiply, lower,
+or otherwise alter that score. No automatic disease routing is offered.
+
+The legacy trained gatekeeper predicts image modality, not whether an image is
+diagnostically informative. It is no longer loaded or called by the screening
+pipeline. Current suitability checks are deterministic heuristics and are not a
+learned or clinically validated gradability model. Training such a model requires
+separate labels for usable and unusable images across all supported modalities.
 
 ## Image quality thresholds
 
