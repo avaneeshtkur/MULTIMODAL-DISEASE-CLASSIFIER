@@ -1,35 +1,26 @@
-"""
-classifier.py — Stage B: image modality classification and routing.
+"""Selected-modality suitability checks used before disease inference.
 
-With a trained gatekeeper model (artifacts/models/gatekeeper):
-    route only if top score ≥ GATEKEEPER_MIN_CONFIDENCE and the margin over the
-    runner-up ≥ GATEKEEPER_MIN_MARGIN; otherwise UNCERTAIN_MODALITY.
-    A top class that is not a supported modality → UNSUPPORTED_MODALITY.
-
-Without the trained model:
-    automatic routing is DISABLED. Simple colour statistics give a "hint"
-    which is shown to the user but never used to route, because hand-written
-    rules are not a validated classifier. Manual module selection is still
-    allowed; conservative consistency checks catch obvious mismatches
-    (e.g. a multi-coloured photo submitted as a chest X-ray).
+The legacy trained gatekeeper predicts modality; it was not trained on
+informative/uninformative labels. It is intentionally not loaded or invoked by
+the screening pipeline. Disease selection is explicit and this module applies
+only deterministic compatibility checks before handing the image to a specialist.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
 import config
-from src.core.artifact_validator import canonical_modality
-from src.core.inference_engine import predict_multiclass
-from src.core.model_registry import ModelRegistry
 from src.gatekeeper import rejection_manager as rm
 
-SOURCE_MODEL = "trained_gatekeeper"
-SOURCE_MANUAL = "manual_selection"
+SOURCE_SELECTED = "selected_specialist"
+SOURCE_MANUAL = "manual_selection"  # compatibility name for older records
+SOURCE_MODEL = "trained_gatekeeper"  # legacy identifier; never emitted by this pipeline
 SOURCE_NONE = "unavailable"
 
-# Conservative consistency limits (calibrated on bundled data; see docs/ARCHITECTURE.md)
-XRAY_MAX_HUE_DIVERSITY = 25.0      # chest X-rays (incl. tinted film photos) ≤ 15.8 in data
-COLOUR_MIN_SATURATION = 0.01       # fundus ≥ 0.024, histopathology ≥ 0.11 in data
+# Conservative consistency limits (see docs/ARCHITECTURE.md). These are input
+# compatibility heuristics, not a trained modality or clinical-gradability model.
+XRAY_MAX_HUE_DIVERSITY = 25.0
+COLOUR_MIN_SATURATION = 0.01
 
 
 @dataclass
@@ -49,7 +40,7 @@ class ModalityDecision:
 
 
 def heuristic_hint(metrics: dict) -> str:
-    """Descriptive only. Never used for routing."""
+    """Descriptive only; never routes an image or changes a disease score."""
     sat, hue = metrics.get("saturation_mean", 0), metrics.get("hue_diversity", 0)
     r, g, b = metrics.get("mean_rgb", [0, 0, 0])
     if sat < COLOUR_MIN_SATURATION or hue < 1.0:
@@ -73,65 +64,34 @@ def _consistency_rejection(modality: str, metrics: dict) -> rm.Rejection | None:
     return None
 
 
-class Gatekeeper:
-    def __init__(self, registry: ModelRegistry):
-        self.registry = registry
+class InputSuitabilityGate:
+    """Technical and coarse modality checks; does not diagnose or predict disease."""
 
-    @property
-    def model_available(self) -> bool:
-        return self.registry.is_available("gatekeeper")
+    model_available = False
 
-    def _model_decision(self, image) -> ModalityDecision:
-        res = predict_multiclass(self.registry.get("gatekeeper"), image)
-        if res["error"]:
-            return ModalityDecision(None, SOURCE_MODEL, rejection=rm.Rejection(
-                rm.UNCERTAIN_MODALITY, rm.STAGE_MODALITY, {"reason": res["error"]}))
-        ranked = sorted(res["probs"].items(), key=lambda kv: kv[1], reverse=True)
-        (top_label, top_p), second_p = ranked[0], (ranked[1][1] if len(ranked) > 1 else 0.0)
-        modality = canonical_modality(top_label)
-        d = ModalityDecision(modality, SOURCE_MODEL, round(top_p, 4), res["probs"],
-                             processing_time_ms=res["processing_time_ms"])
-        # Per-model routing limits from metadata (e.g. stricter for a gatekeeper without an "other" class)
-        routing = self.registry.get("gatekeeper").metadata.get("routing") or {}
-        min_conf = max(config.GATEKEEPER_MIN_CONFIDENCE, routing.get("min_confidence", 0.0))
-        min_margin = max(config.GATEKEEPER_MIN_MARGIN, routing.get("min_margin", 0.0))
-        if top_p < min_conf or top_p - second_p < min_margin:
-            d.modality = None
-            d.rejection = rm.Rejection(rm.UNCERTAIN_MODALITY, rm.STAGE_MODALITY,
-                                       {"reason": f"top score {top_p:.2f}, margin {top_p - second_p:.2f}"})
-        elif modality is None:
-            d.rejection = rm.Rejection(rm.UNSUPPORTED_MODALITY, rm.STAGE_MODALITY, {"label": top_label})
-        return d
+    def assess_selected(self, disease_key: str, metrics: dict) -> ModalityDecision:
+        modality = next((m for m, disease in config.MODALITIES.items() if disease == disease_key), None)
+        if modality is None:
+            return ModalityDecision(None, SOURCE_SELECTED, rejection=rm.Rejection(
+                rm.UNSUPPORTED_MODALITY, rm.STAGE_MODALITY, {"label": disease_key}))
+        rejection = _consistency_rejection(modality, metrics)
+        return ModalityDecision(modality, SOURCE_SELECTED, hint=heuristic_hint(metrics),
+                                rejection=rejection,
+                                note="Selected specialist directly; deterministic suitability checks only.")
 
     def classify(self, image, metrics: dict, manual_modality: str | None = None) -> ModalityDecision:
-        """manual_modality=None means automatic routing."""
-        hint = heuristic_hint(metrics)
-        if self.model_available:
-            d = self._model_decision(image)
-            d.hint = hint
-            if not d.rejection:
-                # A softmax gatekeeper always picks *some* class; deterministic checks catch obvious
-                # non-medical inputs it routes confidently (e.g. a colourful photo as "chest X-ray").
-                rej = _consistency_rejection(d.modality, metrics)
-                if rej:
-                    d.rejection = rm.Rejection(rm.UNSUPPORTED_MODALITY, rm.STAGE_MODALITY, {
-                        "label": f"{d.modality} by model, but {rej.details['observed']} fails consistency checks"})
-                    d.modality = None
-            if manual_modality is None or d.rejection:
-                return d
-            if d.modality != manual_modality:
-                d.rejection = rm.Rejection(rm.MODALITY_MISMATCH, rm.STAGE_MODALITY,
-                                           {"expected": manual_modality, "observed": d.modality})
-                d.modality = None
-            else:
-                d.source = SOURCE_MANUAL + "+" + SOURCE_MODEL
-            return d
-
-        # No trained gatekeeper
+        """Compatibility API: require a chosen modality; never run learned routing."""
         if manual_modality is None:
-            return ModalityDecision(None, SOURCE_NONE, hint=hint, rejection=rm.Rejection(
-                rm.UNCERTAIN_MODALITY, rm.STAGE_MODALITY, {"reason": "gatekeeper model not installed"}),
-                note="Automatic modality detection is unavailable. Select the screening module manually.")
-        rej = _consistency_rejection(manual_modality, metrics)
-        return ModalityDecision(None if rej else manual_modality, SOURCE_MANUAL, hint=hint, rejection=rej,
-                                note="Modality selected manually; not verified by a trained classifier.")
+            return ModalityDecision(None, SOURCE_NONE, hint=heuristic_hint(metrics),
+                                    rejection=rm.Rejection(rm.DISEASE_SELECTION_REQUIRED,
+                                                           rm.STAGE_MODALITY))
+        disease = config.MODALITIES.get(manual_modality)
+        return self.assess_selected(disease, metrics) if disease else ModalityDecision(
+            None, SOURCE_SELECTED, rejection=rm.Rejection(rm.UNSUPPORTED_MODALITY,
+                                                            rm.STAGE_MODALITY,
+                                                            {"label": manual_modality}))
+
+
+# Older imports can still construct this class, but its learned classifier path
+# has been removed from screening.
+Gatekeeper = InputSuitabilityGate
