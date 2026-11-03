@@ -1,0 +1,5 @@
+{
+  "tb": {"kind": "local_onnx"},
+  "dr": {"kind": "local_onnx"},
+  "oral": {"kind": "local_onnx"}
+}
