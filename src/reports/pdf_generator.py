@@ -176,10 +176,12 @@ def generate_report(report: dict, lang: str = "en", out_dir: str | Path | None =
 
     pdf.section(T("pdf.result"))
     band = report.get("uncertainty_band")
-    score_txt = _fmt(report.get("score"))
+    score_txt = ("—" if report.get("score") is None else f'{report["score"] * 100:.2f}%')
     if report.get("score") is not None and report.get("score_kind"):
         score_txt += f"  ({report['score_kind']})"
     rows = [
+        ("Patient name" if lang == "en" else "रोगी का नाम", report.get("patient_name") or "Not provided"),
+        ("Age / sex", f"{report.get('patient_age') if report.get('patient_age') is not None else 'Not provided'} / {report.get('patient_sex') or 'Not provided'}"),
         (T("pdf.patient_ref"), report.get("patient_ref") or "—"),
         (T("pdf.internal_id"), f"#{report.get('patient_id')}" if report.get("patient_id") else "—"),
         (T("pdf.date"), report.get("created_at") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")),
@@ -187,13 +189,37 @@ def generate_report(report: dict, lang: str = "en", out_dir: str | Path | None =
         (T("pdf.routing"), report.get("routing") or "—"),
         (T("pdf.quality"), report.get("quality") or T("pdf.quality_ok")),
         (T("pdf.score"), score_txt),
-        (T("pdf.threshold"), _fmt(report.get("threshold")) + (f"  (± band {band[0]:.3f}–{band[1]:.3f})" if band else "")),
+        (T("pdf.threshold"), ("—" if report.get("threshold") is None else f'{report["threshold"] * 100:.2f}%') + (f"  (± band {band[0] * 100:.2f}%–{band[1] * 100:.2f}%)" if band else "")),
         (T("pdf.model_version"), report.get("model_version") or "—"),
         (T("pdf.processing_time"), f"{report['processing_time_ms']:.0f} ms" if report.get("processing_time_ms") else "—"),
     ]
     pdf.kv_table(rows)
+    provenance = report.get('provenance') or {}
+    if provenance:
+        pdf.section('Model provenance')
+        pdf.kv_table([(label, str(provenance.get(key) or '—')) for key, label in (
+            ('provider', 'Inference provider'), ('provider_status', 'Provider outcome'),
+            ('target_definition', 'Disease target'), ('positive_class', 'Positive class'),
+            ('provider_request_id', 'Provider request'))])
+        # Long immutable identifiers wrap safely without dominating the result table.
+        pdf.font(7.5, False, GREY)
+        for key in ('preprocessing_version', 'decision_policy_version'):
+            if provenance.get(key):
+                pdf.multi_cell(0, 4.5, pdf.txt(key + ': ' + str(provenance[key])), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.font(8, False, GREY)
     pdf.multi_cell(0, 4.5, pdf.txt(T("score_note")), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+
+    if report.get("quality_metrics"):
+        pdf.section("Image quality measurements")
+        m = report["quality_metrics"]
+        pdf.kv_table([("Dimensions", f"{m.get('width', '—')} x {m.get('height', '—')} px"),
+                      ("Sharpness (Laplacian variance)", str(m.get('blur_laplacian_var', '—'))),
+                      ("Exposure (1st / 99th percentile)", f"{m.get('p1', '—')} / {m.get('p99', '—')} (0-255)")])
+        pdf.font(8, False, GREY)
+        pdf.multi_cell(0, 4.5, "Technical checks are separate from disease score. Passing does not establish diagnostic quality.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+
+    if report.get("quality_warnings"):
+        pdf.bullets(report["quality_warnings"])
 
     pdf.section(T("pdf.gradcam"))
     if gradcam and gradcam.get("overlay") is not None:
@@ -221,6 +247,8 @@ def generate_report(report: dict, lang: str = "en", out_dir: str | Path | None =
     else:
         pdf.bullets([f"[{r['rule_id']}] {r['text']}" for r in rules] or [T("q.no_rules")])
 
+    if pdf.get_y() > 225:
+        pdf.add_page()
     pdf.section(T("pdf.limitations"))
     pdf.bullets([T(f"pdf.limit.{i}") for i in range(1, 5)])
 
