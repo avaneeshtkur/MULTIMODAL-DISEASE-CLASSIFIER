@@ -8,10 +8,19 @@ __pycache__/
 
 # Environments
 .env
+.env.*
+!.env.example
+providers.local.json
+*.jobs.lock
 .venv
 env/
 venv/
 ENV/
+output/pretrained/
+output/research-bundles/
+output/research/
+output/external/
+output/audit-backup-*/
 
 # IDE & OS
 .vscode/
