@@ -1,11 +1,11 @@
 """
 pipeline.py — end-to-end screening workflow.
 
-    upload → Stage A image validation → duplicate check → Stage B gatekeeper
-    → modality-specific quality → specialist model → Grad-CAM
-    → clinical decision support → persistence → (PDF on request)
+    upload → Stage A image suitability → duplicate check → explicitly selected specialist
+    → modality-specific quality → selected local/remote specialist → optional explanation
+    → clinical decision support → persistence → automatic PDF in the web workflow
 
-Manual module selection skips automatic routing but never skips validation.
+The legacy learned modality gatekeeper is not used for routing or scoring.
 Every exit path is recorded: either a screening_results row or a
 rejection_events row.
 """
@@ -21,9 +21,9 @@ from src.database.analytics_service import AnalyticsService
 from src.database.db import Database
 from src.database.patient_service import PatientService
 from src.database.screening_service import ScreeningService
-from src.diseases import build_modules
+from src.providers import build_providers, load_provider_config
 from src.gatekeeper import rejection_manager as rm
-from src.gatekeeper.classifier import Gatekeeper, ModalityDecision
+from src.gatekeeper.classifier import InputSuitabilityGate, ModalityDecision
 from src.gatekeeper.duplicate_detector import check_duplicate, duplicate_rejection
 from src.gatekeeper.image_quality import modality_blur_check, validate_image
 from src.utils.image_hash import short_hash
@@ -64,16 +64,21 @@ class AppContext:
     patients: PatientService
     screenings: ScreeningService
     analytics: AnalyticsService
-    gatekeeper: Gatekeeper
+    suitability_gate: InputSuitabilityGate
     modules: dict
 
 
-def build_context(db_path=None, models_dir=None) -> AppContext:
-    registry = ModelRegistry(models_dir=models_dir)
+def build_context(db_path=None, models_dir=None, provider_config=None) -> AppContext:
+    settings = load_provider_config(provider_config)
+    # Remote specialists never validate or load local disease weights.
+    # The old modality classifier is not an informativity model and no longer participates.
+    keys = [k for k, v in settings.items() if v['kind'] == 'local_onnx']
+    registry = ModelRegistry(models_dir=models_dir, keys=keys)
     db = Database(db_path)
-    db.sync_model_registry(registry.status_rows())
+    modules = build_providers(registry, settings)
+    db.sync_model_registry([m.status_row() for m in modules.values()])
     return AppContext(registry, db, PatientService(db), ScreeningService(db), AnalyticsService(db),
-                      Gatekeeper(registry), build_modules(registry))
+                      InputSuitabilityGate(), modules)
 
 
 def routing_text_for(disease: str, source: str | None, confidence: float | None, lang: str = "en") -> str:
@@ -127,17 +132,25 @@ def run_screening(ctx: AppContext, image_bytes: bytes, filename: str, patient_id
                               " Re-screened deliberately; this does not establish patient identity.")
         ctx.db.audit("duplicate_rescreened", "screening_session", session_id, {"same_patient": dup.same_patient})
 
-    # Stage B — modality
-    manual = MODULE_TO_MODALITY.get(module) if module != "auto" else None
-    decision = ctx.gatekeeper.classify(q.image, q.metrics, manual_modality=manual)
+    # Disease selection is explicit. The old learned model classifies modality,
+    # not informativeness, so it must not choose or influence the disease model.
+    if module not in config.SPECIALIST_KEYS:
+        return reject(rm.Rejection(rm.DISEASE_SELECTION_REQUIRED, rm.STAGE_MODALITY))
+
+    # Stage B — deterministic suitability checks for the selected specialist.
+    decision = ctx.suitability_gate.assess_selected(module, q.metrics)
     out.modality = decision
     if decision.rejection:
         return reject(decision.rejection)
-    disease = decision.disease_key
+    disease = module
 
     rej = modality_blur_check(q.metrics, decision.modality)
     if rej:
         return reject(rej)
+
+    sharpness_floor = config.QUALITY["blur_min_by_modality"].get(decision.modality, config.QUALITY["blur_min_global"])
+    if q.metrics.get("blur_laplacian_var", 0) < 2 * sharpness_floor:
+        out.quality_warnings.append("Limited sharpness: close to the image rejection cutoff. Use a sharper original image; disease score is not image-quality confidence.")
 
     spec = ctx.modules[disease]
     if not spec.available and not config.SIMULATION_MODE:
@@ -185,6 +198,8 @@ def report_from_outcome(o: ScreeningOutcome, lang: str) -> dict:
         "questionnaire_rules": clinical["questionnaire"]["rules"] if clinical["questionnaire"]["answers"] else None,
         "referral_label": clinical["referral"]["label"], "simulated": r.get("simulated"),
         "processing_time_ms": r.get("processing_time_ms"),
+        "provenance": {k: r.get(k) for k in ('provider', 'provider_request_id', 'provider_status',
+            'target_definition', 'positive_class', 'preprocessing_version', 'decision_policy_version', 'raw_positive_score')},
     }
 
 
@@ -200,11 +215,12 @@ def report_from_record(rec: dict, lang: str) -> dict:
     return {
         "result_id": rec["id"], "patient_id": rec["patient_id"], "patient_ref": rec.get("reference"),
         "created_at": rec["created_at"], "disease": disease, "status": rec["screening_status"],
-        "score": rec.get("model_score"), "threshold": rec.get("threshold"), "uncertainty_band": None,
-        "score_kind": "SIMULATED (not a model output)" if rec.get("simulated") else None,
+        "score": rec.get("model_score"), "threshold": rec.get("threshold"), "uncertainty_band": rec.get('provenance', {}).get('uncertainty_band'),
+        "score_kind": "SIMULATED (not a model output)" if rec.get("simulated") else rec.get('provenance', {}).get('score_kind'),
         "model_version": rec.get("model_version"), "routing": routing, "quality": t("pdf.quality_ok", lang),
         "reason": reason, "recommendations": clinical["image"]["recommendations"],
         "questionnaire_rules": clinical["questionnaire"]["rules"] if answers else None,
         "referral_label": clinical["referral"]["label"], "simulated": bool(rec.get("simulated")),
         "processing_time_ms": rec.get("processing_time_ms"),
+        "provenance": rec.get('provenance', {}),
     }
