@@ -1,0 +1,139 @@
+{
+  "model": {
+    "model_version": "swin-attention-cnn-author-demo-544e7daf0372",
+    "model_sha256": "44821a37aa123b80a41d33485a4bb2b470d593043e4d6b33d6e90437735d05a2",
+    "target_definition": "OSCC",
+    "positive_class": "OSCC",
+    "preprocessing_version": "bc103225d7c5b3f712d4af76d2a126f60cbaf22fb18bdd111b25d663b46922c0",
+    "decision_policy_version": "71394fb35758f03693048bcd8a0ce0e4ddc6c722f1a2de65789d0ab0d1fa5a86"
+  },
+  "warning": "20 augmented local images; parent-slide grouping unavailable; not independent clinical validation",
+  "counts": {
+    "tp": 10,
+    "fn": 0,
+    "tn": 0,
+    "fp": 10
+  },
+  "cases": [
+    {
+      "file": "data/oral/Normal/aug_10_7099.jpg",
+      "label": 0,
+      "score": 0.6572860276362169,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_112_3602.jpg",
+      "label": 0,
+      "score": 0.6386138078195953,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_105_9248.jpg",
+      "label": 0,
+      "score": 0.5752030251407003,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_10_7299.jpg",
+      "label": 0,
+      "score": 0.5361214089328671,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_109_7809.jpg",
+      "label": 0,
+      "score": 0.6825269503370753,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_108_405.jpg",
+      "label": 0,
+      "score": 0.5836823088032964,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_114_6993.jpg",
+      "label": 0,
+      "score": 0.6433894724604674,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_101_4143.jpg",
+      "label": 0,
+      "score": 0.6765773286987078,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_10_4938.jpg",
+      "label": 0,
+      "score": 0.7009525299564628,
+      "flag": true
+    },
+    {
+      "file": "data/oral/Normal/aug_106_2464.jpg",
+      "label": 0,
+      "score": 0.6066177727521034,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_138_1323.jpg",
+      "label": 1,
+      "score": 0.6252533181541634,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_147_9191.jpg",
+      "label": 1,
+      "score": 0.6173625613224555,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_110_942.jpg",
+      "label": 1,
+      "score": 0.6322236174143883,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_135_8436.jpg",
+      "label": 1,
+      "score": 0.6465138811506206,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_129_2235.jpg",
+      "label": 1,
+      "score": 0.64689246133792,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_128_690.jpg",
+      "label": 1,
+      "score": 0.6610958724546473,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_136_6003.jpg",
+      "label": 1,
+      "score": 0.6169726834796392,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_110_6190.jpg",
+      "label": 1,
+      "score": 0.6790950990402562,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_117_7546.jpg",
+      "label": 1,
+      "score": 0.5769242447921642,
+      "flag": true
+    },
+    {
+      "file": "data/oral/OSCC/aug_0_8699.jpg",
+      "label": 1,
+      "score": 0.5785982569862492,
+      "flag": true
+    }
+  ]
+}
