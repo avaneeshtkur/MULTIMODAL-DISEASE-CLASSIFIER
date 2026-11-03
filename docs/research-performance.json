@@ -1,0 +1,33 @@
+{
+  "method": "Separate sequential processes, CPU, one inference per model; not a latency distribution or memory bound",
+  "models": [
+    {
+      "model_version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+      "load_hash_and_reference_seconds": 0.3850868330337107,
+      "one_inference_seconds": 0.047057249990757555,
+      "peak_rss_bytes": 189726720,
+      "provider_status": "completed"
+    },
+    {
+      "model_version": "retfound-aptos2019-ad280cbf1f32",
+      "load_hash_and_reference_seconds": 4.711552124994341,
+      "one_inference_seconds": 0.26218449999578297,
+      "peak_rss_bytes": 1322729472,
+      "provider_status": "completed"
+    },
+    {
+      "model_version": "swin-attention-cnn-author-demo-544e7daf0372",
+      "load_hash_and_reference_seconds": 2.79920079204021,
+      "one_inference_seconds": 0.15163750003557652,
+      "peak_rss_bytes": 1078935552,
+      "provider_status": "completed"
+    },
+    {
+      "model_version": "tb-vit-4388ed11fbfd",
+      "load_hash_and_reference_seconds": 1.3390417090267874,
+      "one_inference_seconds": 0.023972708033397794,
+      "peak_rss_bytes": 398688256,
+      "provider_status": "completed"
+    }
+  ]
+}
