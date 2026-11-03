@@ -1,0 +1,24 @@
+{
+  "tb": {
+    "candidate": "TB-Net", "state": "official_checkpoint_link_404",
+    "evaluated_alternative": "Ressshh/tb-conformal-distilled-densenet121@6d9b27d040e51ef2bad4906e8fb97132b09d265d",
+    "alternative_state": "local_bundle_verified_but_failed_pilot_15_of_22_positives_missed",
+    "source": "https://github.com/darwinai/TuberculosisNet",
+    "weights": "https://drive.google.com/drive/folders/1l2JSOcoeSJip7dtLpnOoWvpM9-KEHb1b",
+    "runtime": "tbnet_tf",
+    "blocking_requirements": ["Reviewed license and weights", "Reference-runtime parity", "Independent external evaluation", "Validation-selected decision policy"]
+  },
+  "dr": {
+    "candidate": "DR-fine-tuned RETFound",
+    "state": "local_bundle_verified_external_evaluation_pending",
+    "source": "https://github.com/rmaphoh/RETFound/blob/main/BENCHMARK.md",
+    "runtime": "torchscript",
+    "blocking_requirements": ["Checkpoint with trained DR head", "Verified grade order and target", "Reviewed noncommercial terms", "Reference-image parity", "Independent external evaluation"]
+  },
+  "oral": {
+    "candidate": "Published Swin plus attention-CNN demo", "state": "local_demo_path_verified_but_failed_pilot_all_10_normals_flagged",
+    "source": "https://huggingface.co/rudradcruze/oral-cancer",
+    "runtime": "torchscript",
+    "blocking_requirements": ["Strict compatible weights", "Reconciled SHAP and preprocessing path", "Independent reference logits", "Patient/slide-grouped external evaluation"]
+  }
+}
