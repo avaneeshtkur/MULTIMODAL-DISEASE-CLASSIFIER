@@ -1,0 +1,122 @@
+[
+  {
+    "variant": "original",
+    "status": "NO_FLAG_DETECTED",
+    "score": 0.1597,
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 31.818,
+      "brightness_mean": 132.53,
+      "p1": 1.0,
+      "p99": 208.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        132.5,
+        132.5,
+        132.5
+      ],
+      "dark_corner_frac": 0.315
+    },
+    "rejection": null
+  },
+  {
+    "variant": "darkened_50_percent",
+    "status": "INCONCLUSIVE",
+    "score": 0.2672,
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 10.115,
+      "brightness_mean": 66.01,
+      "p1": 0.0,
+      "p99": 104.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        66.0,
+        66.0,
+        66.0
+      ],
+      "dark_corner_frac": 0.448
+    },
+    "rejection": null
+  },
+  {
+    "variant": "darkened_10_percent",
+    "status": "REJECTED",
+    "score": null,
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 1.824,
+      "brightness_mean": 12.81,
+      "p1": 0.0,
+      "p99": 20.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        12.8,
+        12.8,
+        12.8
+      ],
+      "dark_corner_frac": 1.0
+    },
+    "rejection": "IMAGE_UNDEREXPOSED"
+  },
+  {
+    "variant": "blur_radius_2",
+    "status": "SCREENING_FLAGGED",
+    "score": 0.4785,
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 4.597,
+      "brightness_mean": 132.52,
+      "p1": 1.0,
+      "p99": 207.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        132.5,
+        132.5,
+        132.5
+      ],
+      "dark_corner_frac": 0.315
+    },
+    "rejection": null
+  },
+  {
+    "variant": "blur_radius_6",
+    "status": "REJECTED",
+    "score": null,
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 2.091,
+      "brightness_mean": 132.51,
+      "p1": 2.0,
+      "p99": 206.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        132.5,
+        132.5,
+        132.5
+      ],
+      "dark_corner_frac": 0.318
+    },
+    "rejection": "IMAGE_TOO_BLURRY"
+  }
+]
