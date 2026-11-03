@@ -1,14 +1,14 @@
 """
 models.py — SQLite schema.
 
-Minimal personal data: an internal integer ID, an optional clinic reference
-code, age or age range, and optional sex. No names, phone numbers or
-addresses. Uploaded images are not stored (only their SHA-256).
+The patients table keeps a reference, age and sex. Demo scans and names, and
+named PDF snapshots, are stored by their respective services. Ordinary uploads
+are not retained by default. Jobs keep status/results but not uploaded bytes.
 
 Questionnaire answers live on screening_sessions, separate from the
 image-model output in screening_results.
 """
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS patients (
@@ -93,4 +93,21 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 );
 
 CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT);
+
+CREATE TABLE IF NOT EXISTS result_provenance (
+    result_id INTEGER PRIMARY KEY REFERENCES screening_results(id) ON DELETE CASCADE,
+    payload TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS screening_jobs (
+    id TEXT PRIMARY KEY,
+    patient_id INTEGER NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
+    idempotency_key TEXT UNIQUE NOT NULL,
+    request_hash TEXT NOT NULL,
+    status TEXT NOT NULL,
+    response_json TEXT,
+    error TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
 """
