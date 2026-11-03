@@ -1,0 +1,283 @@
+{
+  "model": {
+    "model_version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+    "model_sha256": "fede3d7a0f3276993c96b0732be2404c19bce017f6da75529c2fc3380cba0ff1",
+    "target_definition": "Pulmonary tuberculosis on chest radiographs",
+    "positive_class": "Tuberculosis",
+    "preprocessing_version": "4d75b401f1a6f74db92a8f513ef35c32cea1e0bde2cfc1b45e3ff44c6bb81dc8",
+    "decision_policy_version": "428f770e5c8d495044e7583780ff80d67c58ec0e1c93f689b9636d3773dca578"
+  },
+  "warning": "Small local test; pretraining overlap unknown; not external clinical validation",
+  "counts": {
+    "tp": 7,
+    "fn": 15,
+    "tn": 21,
+    "fp": 1
+  },
+  "cases": [
+    {
+      "file": "data/tb/Normal/Normal-1064.png",
+      "label": 0,
+      "score": 9.012111804764773e-08,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1014.png",
+      "label": 0,
+      "score": 1.0286905346185869e-08,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1104.png",
+      "label": 0,
+      "score": 2.0030792389168455e-10,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1069.png",
+      "label": 0,
+      "score": 2.1623600505261102e-13,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1067.png",
+      "label": 0,
+      "score": 3.1935457225061954e-06,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1026.png",
+      "label": 0,
+      "score": 3.2040481963626224e-08,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1056.png",
+      "label": 0,
+      "score": 2.1918961832517423e-05,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1125.png",
+      "label": 0,
+      "score": 0.05315552832456885,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-106.png",
+      "label": 0,
+      "score": 0.8187051409694414,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Normal/Normal-1072.png",
+      "label": 0,
+      "score": 0.045240115710270784,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1098.png",
+      "label": 0,
+      "score": 3.4340437942426464e-12,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1009.png",
+      "label": 0,
+      "score": 1.53378169517395e-07,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1030.png",
+      "label": 0,
+      "score": 3.145227111739277e-10,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1006.png",
+      "label": 0,
+      "score": 0.0013166859874182862,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1015.png",
+      "label": 0,
+      "score": 0.00023092858609719607,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1049.png",
+      "label": 0,
+      "score": 9.00119002882432e-12,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1092.png",
+      "label": 0,
+      "score": 1.9688070970267509e-07,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1060.png",
+      "label": 0,
+      "score": 0.35900121667676466,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1048.png",
+      "label": 0,
+      "score": 0.0016637702036456947,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1117.png",
+      "label": 0,
+      "score": 0.00023462611936556088,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1024.png",
+      "label": 0,
+      "score": 7.412270602602479e-09,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Normal/Normal-1112.png",
+      "label": 0,
+      "score": 2.0530101271676883e-11,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-165.png",
+      "label": 1,
+      "score": 2.540548115398093e-06,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-115.png",
+      "label": 1,
+      "score": 1.5956229696606246e-13,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-205.png",
+      "label": 1,
+      "score": 0.9310358259546627,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-17.png",
+      "label": 1,
+      "score": 0.5826366877144454,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-168.png",
+      "label": 1,
+      "score": 3.54432129030253e-05,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-127.png",
+      "label": 1,
+      "score": 1.5285330823222537e-08,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-157.png",
+      "label": 1,
+      "score": 0.00394106550103694,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-226.png",
+      "label": 1,
+      "score": 0.9829990105592075,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-160.png",
+      "label": 1,
+      "score": 4.299920188576316e-05,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-173.png",
+      "label": 1,
+      "score": 2.5395343552674072e-06,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-199.png",
+      "label": 1,
+      "score": 0.9421697451107455,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-11.png",
+      "label": 1,
+      "score": 1.0111270584852794e-11,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-131.png",
+      "label": 1,
+      "score": 1.1705789842907733e-11,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-107.png",
+      "label": 1,
+      "score": 0.18802062301348918,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-116.png",
+      "label": 1,
+      "score": 1.1484886596184622e-13,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-15.png",
+      "label": 1,
+      "score": 6.762715823373207e-05,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-193.png",
+      "label": 1,
+      "score": 0.6300739477183266,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-161.png",
+      "label": 1,
+      "score": 4.758118786922586e-07,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-149.png",
+      "label": 1,
+      "score": 1.0479301931417601e-07,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-218.png",
+      "label": 1,
+      "score": 0.36423656208606153,
+      "flag": false
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-125.png",
+      "label": 1,
+      "score": 0.7806505027758517,
+      "flag": true
+    },
+    {
+      "file": "data/tb/Tuberculosis/Tuberculosis-213.png",
+      "label": 1,
+      "score": 0.5596451133426927,
+      "flag": true
+    }
+  ]
+}
