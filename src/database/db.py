@@ -43,6 +43,10 @@ class Database:
 
     def init(self) -> None:
         with self.connect() as c:
+            exists = c.execute("SELECT name FROM sqlite_master WHERE name='meta'").fetchone()
+            version = c.execute("SELECT value FROM meta WHERE key='schema_version'").fetchone() if exists else None
+            if version and int(version['value']) > SCHEMA_VERSION:
+                raise RuntimeError('Database schema is newer than this application. Refusing to downgrade.')
             c.execute("PRAGMA journal_mode = WAL")
             c.executescript(SCHEMA)
             c.execute("INSERT OR REPLACE INTO meta(key, value) VALUES ('schema_version', ?)", (str(SCHEMA_VERSION),))
