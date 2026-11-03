@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Demo patient TB positive 1",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "tb",
+    "score": 0.8635,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient TB positive 2",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "tb",
+    "score": 0.7727,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient TB negative 1",
+    "reference": "negative",
+    "status": "NO_FLAG_DETECTED",
+    "disease": "tb",
+    "score": 0.1251,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient TB negative 2",
+    "reference": "negative",
+    "status": "NO_FLAG_DETECTED",
+    "disease": "tb",
+    "score": 0.1066,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo TB non-informative \u2014 blurred",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo TB non-informative \u2014 blank",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo TB non-informative \u2014 underexposed",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_UNDEREXPOSED",
+    "routing": null
+  },
+  {
+    "name": "Demo patient DR positive 1",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "dr",
+    "score": 0.9946,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient DR positive 2",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "dr",
+    "score": 0.991,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient DR negative 1",
+    "reference": "negative",
+    "status": "INCONCLUSIVE",
+    "disease": "dr",
+    "score": 0.0105,
+    "raw_score_verified": true,
+    "reason": "WITHIN_UNCERTAINTY_BAND",
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient DR negative 2",
+    "reference": "negative",
+    "status": "NO_FLAG_DETECTED",
+    "disease": "dr",
+    "score": 0.0034,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo DR non-informative \u2014 blurred",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo DR non-informative \u2014 blank",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo DR non-informative \u2014 underexposed",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_UNDEREXPOSED",
+    "routing": null
+  },
+  {
+    "name": "Demo patient Oral cancer positive 1",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "oral",
+    "score": 0.98,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient Oral cancer positive 2",
+    "reference": "positive",
+    "status": "SCREENING_FLAGGED",
+    "disease": "oral",
+    "score": 0.9945,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient Oral cancer negative 1",
+    "reference": "negative",
+    "status": "NO_FLAG_DETECTED",
+    "disease": "oral",
+    "score": 0.0281,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo patient Oral cancer negative 2",
+    "reference": "negative",
+    "status": "NO_FLAG_DETECTED",
+    "disease": "oral",
+    "score": 0.0071,
+    "raw_score_verified": true,
+    "reason": null,
+    "routing": "manual_selection+trained_gatekeeper"
+  },
+  {
+    "name": "Demo Oral cancer non-informative \u2014 blurred",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo Oral cancer non-informative \u2014 blank",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_TOO_BLURRY",
+    "routing": null
+  },
+  {
+    "name": "Demo Oral cancer non-informative \u2014 underexposed",
+    "reference": "non-informative",
+    "status": "REJECTED",
+    "disease": null,
+    "score": null,
+    "raw_score_verified": false,
+    "reason": "IMAGE_UNDEREXPOSED",
+    "routing": null
+  }
+]
