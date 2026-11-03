@@ -25,17 +25,17 @@ import config  # noqa: E402
 EXTS = {".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"}
 
 
-def test_split_files(disease: str) -> list[Path]:
+def test_split_files(disease: str, label: int = 1) -> list[Path]:
     """Reproduce src/data.build_splits' test assignment without writing splits.csv."""
     d = config.DISEASES[disease]
     if d["splits_csv"].exists():
         from src.data import resolve_paths
         df = resolve_paths(pd.read_csv(d["splits_csv"]), d["data_dir"])
-        return [Path(p) for p in df[(df.split == "test") & (df.label == 1)]["path"]]
+        return [Path(p) for p in df[(df.split == "test") & (df.label == label)]["path"]]
     rows = [{"path": str(p), "label": i} for i, c in enumerate(d["classes"])
             for p in sorted((d["data_dir"] / c).glob("*")) if p.suffix.lower() in EXTS]
     df = pd.DataFrame(rows)
-    sub = df[df.label == 1].sample(frac=1, random_state=config.SEED).reset_index(drop=True)
+    sub = df[df.label == label].sample(frac=1, random_state=config.SEED).reset_index(drop=True)
     n_test = max(1, int(len(sub) * config.TEST_FRAC))
     return [Path(p) for p in sub["path"][:n_test]]
 
