@@ -1,0 +1,11 @@
+{
+  "operational_unchanged": true,
+  "current": {
+    "sha256_logical_dump": "04d50679b59d98cf06462458afe1e237c1df0a1b5f3d2f004c9b12aa7bae3206",
+    "integrity": "ok"
+  },
+  "backup": {
+    "sha256_logical_dump": "04d50679b59d98cf06462458afe1e237c1df0a1b5f3d2f004c9b12aa7bae3206",
+    "integrity": "ok"
+  }
+}
