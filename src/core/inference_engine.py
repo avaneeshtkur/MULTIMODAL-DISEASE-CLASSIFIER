@@ -154,6 +154,9 @@ def predict_binary(handle: ModelHandle, image: Image.Image, disease: str) -> dic
     lo, hi = uncertainty_band(md)
     return {
         "disease": disease, "class_label": label, "model_score": round(score, 4),
+        "raw_output": np.asarray(raw).reshape(-1).tolist(),
+        "raw_positive_score": output_to_score(raw, {k: v for k, v in md.items() if k != 'calibration'}),
+        "precise_model_score": score,
         "score_kind": "temperature-scaled model score" if _temperature(md) else "uncalibrated model score",
         "threshold": float(md["threshold"]), "uncertainty_band": [round(lo, 4), round(hi, 4)],
         "prediction_status": status, "reason_code": code,
