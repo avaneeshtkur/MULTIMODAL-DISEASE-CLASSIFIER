@@ -99,7 +99,7 @@ def build_splits(disease: str = "tb") -> pd.DataFrame:
     The split is saved to data/<disease>/splits.csv so it's locked in:
     re-running this gives the same split (deterministic via SEED).
     """
-    dcfg = config.DISEASES[disease]
+    dcfg = config.task_config(disease)
     data_dir = dcfg["data_dir"]
     classes = dcfg["classes"]
     splits_csv = dcfg["splits_csv"]
@@ -111,7 +111,7 @@ def build_splits(disease: str = "tb") -> pd.DataFrame:
             raise FileNotFoundError(f"Expected folder {cls_dir} — did you run the data download step?")
         for p in sorted(cls_dir.glob("*")):
             if p.suffix.lower() in (".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"):
-                rows.append({"path": str(p), "label": cls_idx, "class_name": cls_name})
+                rows.append({"path": p.relative_to(config.ROOT).as_posix(), "label": cls_idx, "class_name": cls_name})
 
     df = pd.DataFrame(rows)
     if df.empty:
@@ -154,6 +154,32 @@ class MedicalImageDataset(Dataset):
         return self.transform(img), torch.tensor(row["label"], dtype=torch.float32)
 
 
+def resolve_paths(df: pd.DataFrame, data_dir: Path) -> pd.DataFrame:
+    """
+    Make split paths usable on this machine without changing the split itself.
+
+    Older splits.csv files contain absolute paths from another computer
+    (e.g. C:\\Users\\...\\data\\tb\\Normal\\x.png). Relative paths are resolved
+    against the project root; missing absolute paths are remapped to
+    data/<disease>/<class_name>/<filename>.
+    """
+    def fix(row):
+        raw = str(row["path"])
+        p = Path(raw)
+        if not p.is_absolute():
+            p = config.ROOT / p
+        if p.exists():
+            return str(p)
+        name = raw.replace("\\", "/").rsplit("/", 1)[-1]
+        alt = data_dir / row["class_name"] / name
+        if alt.exists():
+            return str(alt)
+        raise FileNotFoundError(f"Image in splits.csv not found: {raw}")
+    df = df.copy()
+    df["path"] = df.apply(fix, axis=1)
+    return df
+
+
 def get_loaders(disease: str = "tb", num_workers: int = 2):
     """
     One-call setup: build (or reload) splits, create DataLoaders for train/val/test.
@@ -162,7 +188,7 @@ def get_loaders(disease: str = "tb", num_workers: int = 2):
         loaders: dict with keys "train", "val", "test"
         df: the full splits DataFrame (needed by evaluate.py)
     """
-    dcfg = config.DISEASES[disease]
+    dcfg = config.task_config(disease)
     splits_csv = dcfg["splits_csv"]
 
     if splits_csv.exists():
@@ -170,6 +196,7 @@ def get_loaders(disease: str = "tb", num_workers: int = 2):
         print(f"[{disease}] Loaded existing split from {splits_csv}")
     else:
         df = build_splits(disease)
+    df = resolve_paths(df, dcfg["data_dir"])
 
     allow_hflip = dcfg["allow_hflip"]
     image_mode = dcfg["image_mode"]
