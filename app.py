@@ -483,6 +483,13 @@ def build_ui() -> gr.Blocks:
 
 if __name__ == "__main__":
     import os
-    build_ui().launch(theme=build_theme(), css=CSS, js=THEME_JS, server_name=os.environ.get("MEDISCAN_HOST", "127.0.0.1"),
-                      server_port=int(os.environ.get("MEDISCAN_PORT", "7860")),
-                      allowed_paths=[str(config.SAMPLES_DIR)], footer_links=[])
+    import uvicorn
+    from src.ui.web import create_web_app
+
+    web_app = create_web_app(ctx)
+    web_app = gr.mount_gradio_app(
+        web_app, build_ui(), path="/workspace", theme=build_theme(), css=CSS, js=THEME_JS,
+        allowed_paths=[str(config.SAMPLES_DIR)], footer_links=[],
+    )
+    uvicorn.run(web_app, host=os.environ.get("MEDISCAN_HOST", "127.0.0.1"),
+                port=int(os.environ.get("MEDISCAN_PORT", "7860")))
