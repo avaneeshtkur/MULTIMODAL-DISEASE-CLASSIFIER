@@ -1,0 +1,85 @@
+{
+  "model": {
+    "model_version": "retfound-aptos2019-ad280cbf1f32",
+    "model_sha256": "a2777d77ad2473d5666529fdce63a932963a61dffea6b3b2c4749ab7fdbaf2a8",
+    "target_definition": "Any diabetic retinopathy (grades 1\u20134)",
+    "positive_class": "Any diabetic retinopathy (grades 1\u20134)",
+    "preprocessing_version": "ac4ada7b40ae2e54169deb64d3060fa74a8ed915e3e58dedc53aa112247f6645",
+    "decision_policy_version": "71394fb35758f03693048bcd8a0ce0e4ddc6c722f1a2de65789d0ab0d1fa5a86"
+  },
+  "warning": "Four mirrored APTOS source examples, possible training overlap; software smoke test only",
+  "cases": [
+    {
+      "file": "output/pretrained/dr/raw-fixtures/mild-0.jpg",
+      "label": 1,
+      "score": 0.9481590815002688,
+      "raw_output": [
+        -0.35445326566696167,
+        2.3765363693237305,
+        0.4371296465396881,
+        -2.5083136558532715,
+        -0.8344411849975586
+      ],
+      "quality_ok": true,
+      "routing": {
+        "modality": "fundus",
+        "confidence": 0.9809,
+        "rejection": "None"
+      }
+    },
+    {
+      "file": "output/pretrained/dr/raw-fixtures/mild-1.jpg",
+      "label": 1,
+      "score": 0.9705176075156549,
+      "raw_output": [
+        -0.6406015157699585,
+        2.740994930267334,
+        0.23999157547950745,
+        -2.032698392868042,
+        -0.8149919509887695
+      ],
+      "quality_ok": true,
+      "routing": {
+        "modality": "fundus",
+        "confidence": 0.9993,
+        "rejection": "None"
+      }
+    },
+    {
+      "file": "output/pretrained/dr/raw-fixtures/normal-1500.jpg",
+      "label": 0,
+      "score": 0.05566782186946445,
+      "raw_output": [
+        2.9604601860046387,
+        -1.4077332019805908,
+        -1.2899683713912964,
+        -1.0263326168060303,
+        -1.347719430923462
+      ],
+      "quality_ok": true,
+      "routing": {
+        "modality": "fundus",
+        "confidence": 0.9948,
+        "rejection": "None"
+      }
+    },
+    {
+      "file": "output/pretrained/dr/raw-fixtures/normal-1501.jpg",
+      "label": 0,
+      "score": 0.08086359953688517,
+      "raw_output": [
+        2.6403346061706543,
+        -0.9513875842094421,
+        -0.8591674566268921,
+        -1.4915505647659302,
+        -1.6168620586395264
+      ],
+      "quality_ok": true,
+      "routing": {
+        "modality": "fundus",
+        "confidence": 0.9999,
+        "rejection": "None"
+      }
+    }
+  ]
+}
