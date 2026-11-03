@@ -1,0 +1,28 @@
+{
+  "sample_chest_xray.png": {
+    "source": "data/tb/Tuberculosis/Tuberculosis-165.png",
+    "split": "test",
+    "class_folder": "Tuberculosis",
+    "synthetic": false
+  },
+  "sample_fundus.png": {
+    "source": "data/dr/DR/33105f9b3a04.png",
+    "split": "test",
+    "class_folder": "DR",
+    "synthetic": false
+  },
+  "sample_histopathology.jpg": {
+    "source": "data/oral/OSCC/aug_125_1806.jpg",
+    "split": "test",
+    "class_folder": "OSCC",
+    "synthetic": false
+  },
+  "invalid_blurry.png": {
+    "synthetic": true,
+    "purpose": "IMAGE_TOO_BLURRY rejection"
+  },
+  "unsupported_synthetic.png": {
+    "synthetic": true,
+    "purpose": "unsupported / mismatched modality"
+  }
+}
