@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mediscan AI — See beyond the image</title>
+<meta name="description" content="Offline multimodal screening for chest X-ray, retinal fundus, and histopathology images.">
+<link rel="icon" href="/static/images/favicon.svg" type="image/svg+xml">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('mediscan-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
+<link rel="stylesheet" href="/static/css/style.css">
+<script type="module" src="/static/js/app.js">
+</script>
+</head>
+<body>
+<a class="skip" href="#studio">Skip to studio</a>
+<header>
+<a class="brand" href="#home">
+<span class="brand-icon" aria-hidden="true">M</span> Mediscan AI<span class="brand-tag">SCREENING LAB</span>
+</a>
+<button id="menu-toggle" class="quiet mobile-only" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navigation">Menu</button>
+<nav id="navigation" aria-label="Main navigation">
+<a href="#home">Home</a>
+<a href="#studio">Studio</a>
+<a href="#comparison">Comparison</a>
+<a href="#applications">Applications</a>
+<a href="#how-it-works">How it works</a>
+<a href="#experiments">Metrics</a>
+<a href="#about">About</a>
+</nav>
+<button id="theme-toggle" class="theme-toggle" aria-label="Switch color theme">◐</button>
+</header>
+<main>
+<section id="home" class="hero">
+<div class="hero-copy">
+<p class="eyebrow">
+<span class="live-dot">
+</span> A MULTIMODAL MEDICAL IMAGING LAB</p>
+<h1>Mediscan AI<span>See beyond<br>the image.</span>
+</h1>
+<p class="intro">Three imaging modalities. One local workspace. Screen medical images, inspect model explanations, and support the next clinical decision.</p>
+<div class="actions">
+<a class="button primary" href="#studio">Start Screening <span aria-hidden="true">↗</span>
+</a>
+<a class="text-link" href="#applications">Explore Applications →</a>
+</div>
+<p class="hero-note">Local processing <span>·</span> Offline inference <span>·</span> ONNX powered</p>
+</div>
+<div class="hero-visual">
+<div class="hero-image">
+<img src="/api/samples/tb" alt="Bundled chest X-ray sample showing the lungs and rib cage" fetchpriority="high">
+<div class="image-labels">
+<span>CHEST X-RAY</span>
+<span>SCREENING SAMPLE</span>
+</div>
+</div>
+<p class="visual-caption">
+<span>01 / THORACIC IMAGING</span>
+<span>Dataset sample · no prediction shown</span>
+</p>
+</div>
+</section>
+<div class="algorithm-strip">
+<div>
+<span>01</span>
+<h2>Tuberculosis</h2>
+<p>Chest X-ray screening.</p>
+</div>
+<div>
+<span>02</span>
+<h2>Diabetic retinopathy</h2>
+<p>Retinal fundus screening.</p>
+</div>
+<div>
+<span>03</span>
+<h2>Oral cancer</h2>
+<p>Histopathology screening.</p>
+</div>
+</div>
+<section id="studio" class="section">
+<div class="section-heading">
+<div>
+<p class="eyebrow">01 / THE WORKSPACE</p>
+<h2>Medical Imaging Studio</h2>
+<p>Your image. A specialist model. An explainable result.</p>
+</div>
+<span class="status-badge" id="backend-status">Checking engine…</span>
+</div>
+<div class="workspace">
+<aside class="inspector">
+<form id="studio-form">
+<div class="control-heading">
+<h3>Input image</h3>
+<button type="button" class="text-button" id="reset-button">Reset</button>
+</div>
+<label class="dropzone" id="dropzone" for="image-file">
+<span class="upload-icon" aria-hidden="true">↑</span>
+<strong>Drop your image here</strong>
+<span>or click to browse</span>
+<small>JPEG, PNG, BMP · up to 10 MB</small>
+<input id="image-file" type="file" accept="image/jpeg,image/png,image/bmp,.bmp">
+</label>
+<p id="file-info" class="small">No image selected. Try an example to begin.</p>
+<button type="button" id="sample-button" class="button sample-button">Use chest X-ray sample <span>↗</span>
+</button>
+<button type="button" id="remove" class="text-button" hidden>Remove image</button>
+<div class="divider">
+</div>
+<h3>Screening settings</h3>
+<label for="patient">Patient record</label><select id="patient" required><option value="">Select a patient</option></select>
+<button type="button" id="new-patient" class="text-button">Create a demo patient +</button>
+<p class="small">For real patient registration and symptom questionnaires, <a class="text-link" href="/workspace/">open clinical workspace ↗</a>.</p>
+<label for="algorithm">Screening module</label><select id="algorithm"><option value="auto">Automatic routing</option><option value="tb">Tuberculosis · X-ray</option><option value="dr">Retinopathy · fundus</option><option value="oral">Oral cancer · histology</option></select>
+<label for="sample-select">Medical sample</label><select id="sample-select"><option value="tb">Chest X-ray</option><option value="dr">Retinal fundus</option><option value="oral">Histopathology</option></select>
+<label class="check"><input id="explain" type="checkbox" checked> Generate Grad-CAM</label>
+<label class="check"><input id="rescreen" type="checkbox"> Allow identical-image re-screening</label>
+<p id="algorithm-help" class="small">Automatic routing uses the trained modality gatekeeper. Manual selection never skips image validation.</p>
+<button class="button primary run-button" type="submit" id="run-button">Run screening <span aria-hidden="true">→</span></button>
+<button type="button" class="button secondary" id="compare-button" disabled>Inspect explanation</button>
+<p class="small">Screening aid only. Results require clinical review.</p>
+</form>
+</aside>
+<div class="result-workspace" id="result-workspace">
+<div class="workspace-toolbar">
+<span>IMAGE VIEWER</span>
+<span id="viewer-status">Awaiting input</span>
+</div>
+<div id="status-message" role="status" aria-live="polite">
+</div>
+<div class="image-pair">
+<figure>
+<figcaption>
+<span>Original</span>
+<span id="input-size">INPUT</span>
+</figcaption>
+<div class="image-stage">
+<img id="original-preview" alt="Selected input image" hidden>
+<p id="original-empty">A new perspective<br>
+<span>starts with an image.</span>
+</p>
+</div>
+</figure>
+<figure>
+<figcaption>
+<span>Grad-CAM overlay</span>
+<span id="result-algorithm">OUTPUT</span>
+</figcaption>
+<div class="image-stage edge-stage">
+<img id="edge-preview" alt="Model attention overlay" hidden>
+<p id="edge-empty">Model attention,<br>
+<span>available after screening.</span>
+</p>
+</div>
+</figure>
+</div>
+<div id="result-metrics" class="metrics">
+<p class="small">Screen an image to see measured results.</p>
+</div>
+<div id="screening-result" aria-live="polite"></div><div class="result-bottom">
+<p class="small" id="result-settings">Model attention is not a lesion boundary or a diagnosis.</p>
+<a id="download-result" class="button secondary" hidden>Download PNG ↓</a>
+</div>
+</div>
+</div>
+</section>
+<section id="comparison" class="section">
+<div class="section-heading">
+<div>
+<p class="eyebrow">02 / SIDE BY SIDE</p>
+<h2>One image. A closer look.</h2>
+<p>Inspect the model input, attention heatmap, and aligned overlay.</p>
+</div>
+<a href="#studio" class="text-link">Return to studio ↗</a>
+</div>
+<div id="comparison-empty" class="empty-line">Run a screening with <strong>Generate Grad-CAM</strong> enabled to inspect the explanation.</div>
+<div id="comparison-results" hidden>
+<div class="comparison-images" id="comparison-images">
+</div>
+</div><p class="small note">Grad-CAM shows model attention, not a diagnosis or a validated lesion boundary. An explanation is available only when the checkpoint matches the inference model.</p></section>
+<section id="applications" class="section">
+<div class="section-heading">
+<div>
+<p class="eyebrow">03 / THE IMAGING WORKFLOW</p>
+<h2>Different images. Shared principles.</h2>
+<p>Three supported medical image types. Quality checks, specialist screening, and clinical review for each.</p>
+</div>
+</div>
+<div class="application-grid">
+<article class="application-card">
+<img src="/api/samples/tb" alt="Chest X-ray dataset sample showing the lungs and rib cage" loading="lazy">
+<div class="application-content"><p class="eyebrow">01 / CHEST X-RAY</p><h3>Tuberculosis screening</h3><p>Chest radiographs are checked for image quality before the TB specialist model assesses them.</p><details><summary>Review the result</summary><p>Inspect the model score and Grad-CAM alongside the original X-ray, then review the findings in clinical context.</p></details><a href="#studio" class="text-link">Screen a chest X-ray →</a></div>
+</article>
+<article class="application-card">
+<img src="/api/samples/dr" alt="Preprocessed retinal fundus dataset sample showing retinal vessels" loading="lazy">
+<div class="application-content"><p class="eyebrow">02 / RETINAL FUNDUS</p><h3>Diabetic retinopathy screening</h3><p>Retinal fundus images are assessed by the dedicated retinopathy model using its own screening threshold.</p><details><summary>Review the result</summary><p>Select the retinal fundus sample in the studio to explore the model output and available attention overlay.</p></details><a href="#studio" class="text-link">Screen a retinal image →</a></div>
+</article>
+<article class="application-card">
+<img src="/api/samples/oral" alt="Oral histopathology dataset sample showing stained tissue under magnification" loading="lazy">
+<div class="application-content"><p class="eyebrow">03 / ORAL HISTOPATHOLOGY</p><h3>Oral cancer screening</h3><p>Microscopic tissue images are routed to the oral specialist model for histopathology screening.</p><details><summary>Review the result</summary><p>Use histopathology images, rather than mouth photographs. Review the output with a qualified healthcare professional.</p></details><a href="#studio" class="text-link">Screen a tissue image →</a></div>
+</article>
+</div>
+<p class="small note">Bundled dataset samples shown above, including a preprocessed retinal image. These previews do not show screening results.</p>
+</section>
+<section id="how-it-works" class="section">
+<div class="section-heading">
+<div>
+<p class="eyebrow">04 / FROM IMAGE TO EXPLANATION</p>
+<h2>How it works</h2>
+<p>Every screening follows the same validated software workflow.</p>
+</div>
+</div>
+<ol class="pipeline"><li><span>01</span><strong>Acquire</strong><p>Upload a supported medical image and select a patient record.</p></li><li><span>02</span><strong>Validate</strong><p>Check format, image quality, exposure, and exact duplicates.</p></li><li><span>03</span><strong>Route</strong><p>Identify the modality and select the matching specialist.</p></li><li><span>04</span><strong>Screen</strong><p>Apply the trained model, threshold, and uncertainty band.</p></li><li><span>05</span><strong>Interpret</strong><p>Review model attention, next steps, and a local report.</p></li></ol><div class="theory-grid"><article><h3>Specialist models</h3><p>Separate EfficientNet-B0 models assess chest X-rays, retinal fundus photographs, and oral histopathology. Scores are model outputs, not calibrated disease probabilities.</p></article><article><h3>Explainable output</h3><p>Grad-CAM uses a verified matching checkpoint. It helps inspect model attention without claiming that highlighted regions are lesions.</p></article><article><h3>Clinical context</h3><p>Questionnaire recommendations remain separate from image predictions. The clinical workspace includes patient history, bilingual reports, and local analytics.</p></article></div><p class="note">Experimental screening aid. No prospective clinical validation. Inconclusive and rejected inputs remain visible rather than being forced into a positive or negative result.</p></section><section id="experiments" class="section experiments">
+<div>
+<p class="eyebrow">05 / MEASURE, THEN INTERPRET</p>
+<h2>Evidence over assumptions.</h2>
+<p>Review the model score, decision threshold, and uncertainty together. A model score is not a probability of disease.</p>
+<button id="export-csv" type="button" class="button secondary" disabled>Export current measurements ↓</button>
+<p class="small" id="export-help">Run a screening to enable CSV export.</p>
+</div>
+<div class="formula">
+<p class="eyebrow">SCORE & DECISION THRESHOLD</p>
+<p class="equation">Model score ≠ diagnostic certainty</p>
+<p>A specialist score is compared with its validated threshold. Scores within the uncertainty band return <strong>INCONCLUSIVE</strong>.</p>
+<p class="small">Clinical accuracy requires independent validation. A no-flag result does not rule out disease. Review all results with a qualified healthcare professional.</p>
+</div>
+</section>
+<section id="about" class="section about">
+<div>
+<p class="eyebrow">06 / ABOUT THE PROJECT</p>
+<h2>Built for local care.<br>Grounded in evidence.</h2>
+</div>
+<div>
+<p>Mediscan AI is an experimental, offline screening aid for tuberculosis, diabetic retinopathy, and oral cancer. It supports clinical review without replacing it.</p>
+<p>ONNX Runtime powers CPU inference. Image validation, modality routing, uncertainty handling, and matched-checkpoint Grad-CAM connect to local patient records and English or Hindi PDF reports.</p>
+<a href="/workspace/" class="text-link">Open clinical workspace ↗</a>
+</div>
+</section>
+</main>
+<footer>
+<a class="brand" href="#home">Mediscan AI</a>
+<p>Local screening. Informed review.</p>
+<a href="#studio">Studio</a>
+<a href="#how-it-works">Methodology</a>
+<a href="#about">Project</a>
+<span>LOCAL BY DESIGN</span>
+</footer>
+</body>
+</html>
