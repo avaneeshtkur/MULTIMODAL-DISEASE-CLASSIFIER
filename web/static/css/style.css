@@ -1104,3 +1104,5 @@ input[type=checkbox] { accent-color:var(--accent); margin-top:4px; }
 .application-card:hover img { filter:brightness(1.1); }
 .section { scroll-margin-top:10px; }
 @media(max-width:580px) { .algorithm-strip h2 { font-size:16px; overflow-wrap:anywhere; } .visual-caption { gap:8px; font-size:7px; } }
+
+dialog {max-width: 560px; width: 90vw; max-height: 90vh; overflow: auto; background: var(--bg, #161b22); color: inherit; border: 1px solid #667; border-radius: 16px; padding: 28px;} dialog::backdrop {background: #000a;} dialog input, dialog select, dialog textarea {display: block; width: 100%; margin: 8px 0 16px; padding: 10px;}
