@@ -1,0 +1,135 @@
+{
+  "tb": {
+    "model_version": "biomedclip-distilled-densenet121-v11-6d9b27d040e5",
+    "source": "https://huggingface.co/Ressshh/tb-conformal-distilled-densenet121",
+    "reference_revision": "6d9b27d040e51ef2bad4906e8fb97132b09d265d",
+    "license": "MIT (author model card)",
+    "files": {
+      "model.onnx": "2d111d13ef30e5f03e4b04ea557438045b8b6c1c77e930aada0688b9bcdeabe9"
+    },
+    "preprocessing": {
+      "color_mode": "rgb",
+      "resize": 224,
+      "resize_mode": "exact",
+      "center_crop": null,
+      "input_size": 224,
+      "interpolation": "bicubic",
+      "normalize": {
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      }
+    },
+    "class_labels": [
+      "Normal",
+      "Tuberculosis"
+    ],
+    "positive_indices": [
+      1
+    ],
+    "decision_policy": {
+      "threshold": 0.5,
+      "uncertainty_margin": 0,
+      "validation_source": "Research argmax policy; not validated on this project population. Author cohort thresholds are not transferred."
+    }
+  },
+  "dr": {
+    "model_version": "retfound-aptos2019-ad280cbf1f32",
+    "source": "https://github.com/rmaphoh/RETFound",
+    "reference_revision": "ad280cbf1f323d18809d3979808c4da1ae2ca040",
+    "license": "CC-BY-NC-4.0; see retained upstream LICENSE",
+    "files": {
+      "model.pt": "936b4f7faea17ba7f94196b33d96d9107a6a28e081f4007a4839433d9613250f",
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "models_vit.py": "dc4a2ec95a45df8a4b1592002ebec62987e91db907b74a8ec27eff10dc055df7"
+    },
+    "preprocessing": {
+      "color_mode": "rgb",
+      "resize": 256,
+      "resize_mode": "shorter_side",
+      "center_crop": 224,
+      "input_size": 224,
+      "interpolation": "bicubic",
+      "normalize": {
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      }
+    },
+    "class_labels": [
+      "No DR",
+      "Mild DR",
+      "Moderate DR",
+      "Severe DR",
+      "Proliferative DR"
+    ],
+    "positive_indices": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "decision_policy": {
+      "threshold": 0.5,
+      "uncertainty_margin": 0,
+      "validation_source": "Research binary probability cutoff; not validated on this project population."
+    }
+  },
+  "oral": {
+    "model_version": "swin-attention-cnn-author-demo-544e7daf0372",
+    "source": "https://huggingface.co/rudradcruze/oral-cancer",
+    "reference_revision": "544e7daf03724e7725efe4fb543d749066fa2fe0",
+    "license": "MIT; research/education only per upstream LICENSE",
+    "files": {
+      "model.pt": "2fac8a1360b5f99da6682307d0625f85abbd4ae3aff4145da37c511d365c0d5e",
+      "LICENSE": "e445aa597af50bc5bde6d7cbb8c954a579534809702c12d5b05e2d0db64ff2f7",
+      "model_classes.py": "ee128ee32e417fd6cf66592deb3d806015328716c4eaa5cdc5ebde76671c600d"
+    },
+    "preprocessing": {
+      "color_mode": "rgb",
+      "resize": 224,
+      "resize_mode": "exact",
+      "center_crop": null,
+      "input_size": 224,
+      "interpolation": "bilinear",
+      "normalize": {
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      }
+    },
+    "class_labels": [
+      "Normal",
+      "OSCC"
+    ],
+    "positive_indices": [
+      1
+    ],
+    "decision_policy": {
+      "threshold": 0.5,
+      "uncertainty_margin": 0,
+      "validation_source": "Research binary probability cutoff; not validated on this project population."
+    }
+  }
+}
