@@ -1,0 +1,5 @@
+{
+  "tb": {"kind": "local_research", "bundle": "../output/research-bundles/tb"},
+  "dr": {"kind": "local_research", "bundle": "../output/research-bundles/dr"},
+  "oral": {"kind": "local_research", "bundle": "../output/research-bundles/oral"}
+}
