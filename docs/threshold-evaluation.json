@@ -1,0 +1,1802 @@
+{
+  "limitation": "Local split independence from external training is unverified. Candidate cutoffs are research only, not installed. No internet example is used for tuning.",
+  "models": {
+    "tb": {
+      "split_source": "Existing local splits.csv; independence from supplied weights unverified",
+      "model_version": "tb-aaa0b6fc",
+      "sha256": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+      "current_threshold": 0.25747474747474747,
+      "candidate_threshold": 0.29835750890257895,
+      "lower_cutoff_test_comparison": {
+        "0.12873737373737373": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 21,
+          "fp": 1,
+          "inconclusive": 5,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.9545454545454546,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        },
+        "0.06436868686868687": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 15,
+          "fp": 7,
+          "inconclusive": 4,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.6818181818181818,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        }
+      },
+      "current_validation": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 1,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_validation": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 0,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "current_test": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 21,
+        "fp": 1,
+        "inconclusive": 0,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 0.9545454545454546,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_test": {
+        "tp": 21,
+        "fn": 1,
+        "tn": 21,
+        "fp": 1,
+        "inconclusive": 1,
+        "flag_sensitivity": 0.9545454545454546,
+        "nonflag_specificity": 0.9545454545454546,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "scores": [
+        {
+          "file": "Normal-1064.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.1251
+        },
+        {
+          "file": "Normal-1014.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.1066
+        },
+        {
+          "file": "Normal-1104.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0936
+        },
+        {
+          "file": "Normal-1069.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.034
+        },
+        {
+          "file": "Normal-1067.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0367
+        },
+        {
+          "file": "Normal-1026.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0547
+        },
+        {
+          "file": "Normal-1056.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0113
+        },
+        {
+          "file": "Normal-1125.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.1366
+        },
+        {
+          "file": "Normal-106.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0504
+        },
+        {
+          "file": "Normal-1072.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.3724
+        },
+        {
+          "file": "Normal-1098.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0612
+        },
+        {
+          "file": "Normal-1009.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0418
+        },
+        {
+          "file": "Normal-1030.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0382
+        },
+        {
+          "file": "Normal-1006.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0223
+        },
+        {
+          "file": "Normal-1015.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0241
+        },
+        {
+          "file": "Normal-1049.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0754
+        },
+        {
+          "file": "Normal-1092.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.024
+        },
+        {
+          "file": "Normal-1060.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.1405
+        },
+        {
+          "file": "Normal-1048.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.1045
+        },
+        {
+          "file": "Normal-1117.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0594
+        },
+        {
+          "file": "Normal-1024.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0075
+        },
+        {
+          "file": "Normal-1112.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0108
+        },
+        {
+          "file": "Normal-1021.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.2169
+        },
+        {
+          "file": "Normal-1113.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.02
+        },
+        {
+          "file": "Normal-1116.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0228
+        },
+        {
+          "file": "Normal-1129.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0152
+        },
+        {
+          "file": "Normal-1096.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0104
+        },
+        {
+          "file": "Normal-1127.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0242
+        },
+        {
+          "file": "Normal-1039.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0396
+        },
+        {
+          "file": "Normal-1025.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0411
+        },
+        {
+          "file": "Normal-1018.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0755
+        },
+        {
+          "file": "Normal-1011.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0566
+        },
+        {
+          "file": "Normal-1057.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0177
+        },
+        {
+          "file": "Normal-1008.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.019
+        },
+        {
+          "file": "Normal-1036.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0168
+        },
+        {
+          "file": "Normal-113.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.052
+        },
+        {
+          "file": "Normal-1044.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.1092
+        },
+        {
+          "file": "Normal-1022.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0127
+        },
+        {
+          "file": "Normal-1001.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0212
+        },
+        {
+          "file": "Normal-1027.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.017
+        },
+        {
+          "file": "Normal-1126.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0175
+        },
+        {
+          "file": "Normal-1075.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0137
+        },
+        {
+          "file": "Normal-1076.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0581
+        },
+        {
+          "file": "Normal-1012.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0144
+        },
+        {
+          "file": "Tuberculosis-165.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8635
+        },
+        {
+          "file": "Tuberculosis-115.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.7727
+        },
+        {
+          "file": "Tuberculosis-205.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.3218
+        },
+        {
+          "file": "Tuberculosis-17.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.7008
+        },
+        {
+          "file": "Tuberculosis-168.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9158
+        },
+        {
+          "file": "Tuberculosis-127.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.7189
+        },
+        {
+          "file": "Tuberculosis-157.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8881
+        },
+        {
+          "file": "Tuberculosis-226.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.889
+        },
+        {
+          "file": "Tuberculosis-160.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8952
+        },
+        {
+          "file": "Tuberculosis-173.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.6754
+        },
+        {
+          "file": "Tuberculosis-199.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8723
+        },
+        {
+          "file": "Tuberculosis-11.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9118
+        },
+        {
+          "file": "Tuberculosis-131.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8233
+        },
+        {
+          "file": "Tuberculosis-107.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9359
+        },
+        {
+          "file": "Tuberculosis-116.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8388
+        },
+        {
+          "file": "Tuberculosis-15.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9043
+        },
+        {
+          "file": "Tuberculosis-193.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.5723
+        },
+        {
+          "file": "Tuberculosis-161.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8636
+        },
+        {
+          "file": "Tuberculosis-149.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.3907
+        },
+        {
+          "file": "Tuberculosis-218.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.7969
+        },
+        {
+          "file": "Tuberculosis-125.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.8706
+        },
+        {
+          "file": "Tuberculosis-213.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.911
+        },
+        {
+          "file": "Tuberculosis-122.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.3553
+        },
+        {
+          "file": "Tuberculosis-214.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8535
+        },
+        {
+          "file": "Tuberculosis-217.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.5978
+        },
+        {
+          "file": "Tuberculosis-23.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.913
+        },
+        {
+          "file": "Tuberculosis-197.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.44
+        },
+        {
+          "file": "Tuberculosis-228.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9585
+        },
+        {
+          "file": "Tuberculosis-14.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9441
+        },
+        {
+          "file": "Tuberculosis-126.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9249
+        },
+        {
+          "file": "Tuberculosis-119.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9173
+        },
+        {
+          "file": "Tuberculosis-112.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.5829
+        },
+        {
+          "file": "Tuberculosis-158.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.914
+        },
+        {
+          "file": "Tuberculosis-109.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8441
+        },
+        {
+          "file": "Tuberculosis-137.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9069
+        },
+        {
+          "file": "Tuberculosis-230.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.6801
+        },
+        {
+          "file": "Tuberculosis-145.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8925
+        },
+        {
+          "file": "Tuberculosis-123.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9012
+        },
+        {
+          "file": "Tuberculosis-102.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8628
+        },
+        {
+          "file": "Tuberculosis-128.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8435
+        },
+        {
+          "file": "Tuberculosis-227.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8149
+        },
+        {
+          "file": "Tuberculosis-176.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.7914
+        },
+        {
+          "file": "Tuberculosis-177.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.7375
+        },
+        {
+          "file": "Tuberculosis-113.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.8022
+        }
+      ]
+    },
+    "dr": {
+      "split_source": "Reconstructed local split; original external training membership unknown. Exploratory only.",
+      "model_version": "dr-4740a5c2",
+      "sha256": "4740a5c2a71cbae4b9979dff64c69c569310749d3f8fae1448e92777f1040997",
+      "current_threshold": 0.01,
+      "candidate_threshold": 0.42443725742132776,
+      "lower_cutoff_test_comparison": {
+        "0.005": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 13,
+          "fp": 9,
+          "inconclusive": 2,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.5909090909090909,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        },
+        "0.0025": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 10,
+          "fp": 12,
+          "inconclusive": 2,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.45454545454545453,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        }
+      },
+      "current_validation": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 19,
+        "fp": 3,
+        "inconclusive": 2,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 0.8636363636363636,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_validation": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 0,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "current_test": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 17,
+        "fp": 5,
+        "inconclusive": 3,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 0.7727272727272727,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_test": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 0,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "scores": [
+        {
+          "file": "0b64a0a06f9a.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0105
+        },
+        {
+          "file": "0304bedad8fe.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0034
+        },
+        {
+          "file": "12b57dac703e.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0091
+        },
+        {
+          "file": "0cae727cf119.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0009
+        },
+        {
+          "file": "0c38940e1f80.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0015
+        },
+        {
+          "file": "05e9126dfa5c.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0019
+        },
+        {
+          "file": "0a74c92e287c.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0006
+        },
+        {
+          "file": "164cd5a3a6cd.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0031
+        },
+        {
+          "file": "0ae2dd2e09ea.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0439
+        },
+        {
+          "file": "0ce062f26edc.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0012
+        },
+        {
+          "file": "10de500cf0c5.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0014
+        },
+        {
+          "file": "022f820027b8.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0067
+        },
+        {
+          "file": "070d4ce5fd90.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0008
+        },
+        {
+          "file": "01d9477b1171.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0043
+        },
+        {
+          "file": "03b373718013.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0104
+        },
+        {
+          "file": "096436d68d06.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0054
+        },
+        {
+          "file": "1002b5151b8e.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.002
+        },
+        {
+          "file": "0afbeeef0ff7.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0968
+        },
+        {
+          "file": "093cf723fede.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0181
+        },
+        {
+          "file": "155e2df6bfcf.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0227
+        },
+        {
+          "file": "0551676cc2aa.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0005
+        },
+        {
+          "file": "14c3b41d289c.png",
+          "split": "test",
+          "label": 0,
+          "score": 0.0191
+        },
+        {
+          "file": "05195a3db5e2.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0039
+        },
+        {
+          "file": "1509d097b69a.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0022
+        },
+        {
+          "file": "152db3de8120.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0006
+        },
+        {
+          "file": "1782142e17d9.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0007
+        },
+        {
+          "file": "10a5026eb8e6.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0039
+        },
+        {
+          "file": "165c548185f8.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0118
+        },
+        {
+          "file": "08037e4490e5.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0051
+        },
+        {
+          "file": "05b1bb2bdb81.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0064
+        },
+        {
+          "file": "04aef84a2cc1.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0036
+        },
+        {
+          "file": "02358b47ea89.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0865
+        },
+        {
+          "file": "0a85a1e8f9e9.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0098
+        },
+        {
+          "file": "0212dd31f623.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0007
+        },
+        {
+          "file": "07a2b8cabf6b.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0013
+        },
+        {
+          "file": "178412895d5e.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0039
+        },
+        {
+          "file": "08ee569d4721.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.1475
+        },
+        {
+          "file": "05339950962e.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0001
+        },
+        {
+          "file": "00f6c1be5a33.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0051
+        },
+        {
+          "file": "060e00d1e2ab.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0019
+        },
+        {
+          "file": "165634a6167e.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0133
+        },
+        {
+          "file": "0d744aed4d64.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0015
+        },
+        {
+          "file": "0d8f60ed9280.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0016
+        },
+        {
+          "file": "02cd34a85b24.png",
+          "split": "val",
+          "label": 0,
+          "score": 0.0007
+        },
+        {
+          "file": "33105f9b3a04.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9946
+        },
+        {
+          "file": "0d310aba6373.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.991
+        },
+        {
+          "file": "4f7755e74a9e.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9942
+        },
+        {
+          "file": "35aa7f5c2ec0.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9935
+        },
+        {
+          "file": "3461dc601cc2.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9828
+        },
+        {
+          "file": "13ab8db8c700.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9968
+        },
+        {
+          "file": "2d7666b8884f.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9603
+        },
+        {
+          "file": "5879285f9d8d.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.983
+        },
+        {
+          "file": "2f4e81787d9b.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9989
+        },
+        {
+          "file": "36677b70b1ef.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9973
+        },
+        {
+          "file": "4da2961e62fe.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9948
+        },
+        {
+          "file": "07a1c7073982.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9985
+        },
+        {
+          "file": "194814669fee.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9975
+        },
+        {
+          "file": "0684311afdfc.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9989
+        },
+        {
+          "file": "0dc031c94225.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9964
+        },
+        {
+          "file": "274f5029189b.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9981
+        },
+        {
+          "file": "4a213b405ee4.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9967
+        },
+        {
+          "file": "3044022c6969.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.996
+        },
+        {
+          "file": "25e9fd872182.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.994
+        },
+        {
+          "file": "55eac26bd383.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9927
+        },
+        {
+          "file": "12ce6a1a1f31.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9919
+        },
+        {
+          "file": "5347b4c8e9b3.png",
+          "split": "test",
+          "label": 1,
+          "score": 0.9935
+        },
+        {
+          "file": "10f36b0239fb.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9896
+        },
+        {
+          "file": "53704c80f0d8.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9878
+        },
+        {
+          "file": "5548a7961a3e.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.6242
+        },
+        {
+          "file": "5a091e8cd95c.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9961
+        },
+        {
+          "file": "4cae247d9909.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.7474
+        },
+        {
+          "file": "595446774178.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9981
+        },
+        {
+          "file": "1d674e2e32e0.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9952
+        },
+        {
+          "file": "12e3f5f2cb17.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9933
+        },
+        {
+          "file": "0f495d87656a.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9993
+        },
+        {
+          "file": "0a3202889f4d.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9907
+        },
+        {
+          "file": "2d9d97a6e713.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9938
+        },
+        {
+          "file": "07929d32b5b3.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9967
+        },
+        {
+          "file": "1c0cf251b426.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9922
+        },
+        {
+          "file": "5b068765e846.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9667
+        },
+        {
+          "file": "22a6da005395.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9967
+        },
+        {
+          "file": "1116271db4ea.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9952
+        },
+        {
+          "file": "0369f3efe69b.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9927
+        },
+        {
+          "file": "15cc2aef772a.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9858
+        },
+        {
+          "file": "58ccba7eec9c.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.996
+        },
+        {
+          "file": "38b9bb961847.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.5883
+        },
+        {
+          "file": "38e0e28d35d3.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.4883
+        },
+        {
+          "file": "0a61bddab956.png",
+          "split": "val",
+          "label": 1,
+          "score": 0.9974
+        }
+      ]
+    },
+    "oral": {
+      "split_source": "Reconstructed local split; original external training membership unknown. Exploratory only.",
+      "model_version": "oral-ad94db8c",
+      "sha256": "ad94db8cf45101a043881886a06bf9c01209e493ac19f2b4536df50a104795b6",
+      "current_threshold": 0.9306060606060605,
+      "candidate_threshold": 0.9140712696738709,
+      "lower_cutoff_test_comparison": {
+        "0.4653030303030303": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 20,
+          "fp": 2,
+          "inconclusive": 0,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.9090909090909091,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        },
+        "0.23265151515151514": {
+          "tp": 22,
+          "fn": 0,
+          "tn": 20,
+          "fp": 2,
+          "inconclusive": 0,
+          "flag_sensitivity": 1.0,
+          "nonflag_specificity": 0.9090909090909091,
+          "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+        }
+      },
+      "current_validation": {
+        "tp": 20,
+        "fn": 2,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 2,
+        "flag_sensitivity": 0.9090909090909091,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_validation": {
+        "tp": 22,
+        "fn": 0,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 0,
+        "flag_sensitivity": 1.0,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "current_test": {
+        "tp": 20,
+        "fn": 2,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 2,
+        "flag_sensitivity": 0.9090909090909091,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "candidate_test": {
+        "tp": 21,
+        "fn": 1,
+        "tn": 22,
+        "fp": 0,
+        "inconclusive": 1,
+        "flag_sensitivity": 0.9545454545454546,
+        "nonflag_specificity": 1.0,
+        "note": "Inconclusive counts as not flagged in these sensitivity/specificity calculations; it is not a negative diagnosis."
+      },
+      "scores": [
+        {
+          "file": "aug_109_7809.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0281
+        },
+        {
+          "file": "aug_101_5308.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0071
+        },
+        {
+          "file": "aug_114_8309.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0119
+        },
+        {
+          "file": "aug_10_7099.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0178
+        },
+        {
+          "file": "aug_10_1877.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.6728
+        },
+        {
+          "file": "aug_103_5017.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0045
+        },
+        {
+          "file": "aug_108_4940.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0457
+        },
+        {
+          "file": "aug_118_1301.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0203
+        },
+        {
+          "file": "aug_109_2001.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0178
+        },
+        {
+          "file": "aug_10_9029.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.6657
+        },
+        {
+          "file": "aug_113_7083.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0049
+        },
+        {
+          "file": "aug_100_9584.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0192
+        },
+        {
+          "file": "aug_104_4697.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0063
+        },
+        {
+          "file": "aug_100_5289.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.1389
+        },
+        {
+          "file": "aug_101_8567.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.019
+        },
+        {
+          "file": "aug_107_5959.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0283
+        },
+        {
+          "file": "aug_112_6674.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.022
+        },
+        {
+          "file": "aug_109_3291.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0071
+        },
+        {
+          "file": "aug_107_2894.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0126
+        },
+        {
+          "file": "aug_116_6621.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0155
+        },
+        {
+          "file": "aug_103_3012.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0091
+        },
+        {
+          "file": "aug_115_7670.jpg",
+          "split": "test",
+          "label": 0,
+          "score": 0.0136
+        },
+        {
+          "file": "aug_102_8396.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0274
+        },
+        {
+          "file": "aug_116_1847.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0171
+        },
+        {
+          "file": "aug_116_4040.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0077
+        },
+        {
+          "file": "aug_118_7939.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0803
+        },
+        {
+          "file": "aug_113_6342.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.007
+        },
+        {
+          "file": "aug_118_3712.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.006
+        },
+        {
+          "file": "aug_105_9248.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0484
+        },
+        {
+          "file": "aug_103_4536.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0094
+        },
+        {
+          "file": "aug_102_5184.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0115
+        },
+        {
+          "file": "aug_101_2423.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0128
+        },
+        {
+          "file": "aug_108_5933.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0199
+        },
+        {
+          "file": "aug_100_6210.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0193
+        },
+        {
+          "file": "aug_105_1015.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0539
+        },
+        {
+          "file": "aug_118_9671.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0041
+        },
+        {
+          "file": "aug_106_5654.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0167
+        },
+        {
+          "file": "aug_103_1019.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0099
+        },
+        {
+          "file": "aug_0_5752.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.5897
+        },
+        {
+          "file": "aug_103_6531.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0068
+        },
+        {
+          "file": "aug_118_2999.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0063
+        },
+        {
+          "file": "aug_110_6606.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0079
+        },
+        {
+          "file": "aug_110_7227.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0103
+        },
+        {
+          "file": "aug_101_2943.jpg",
+          "split": "val",
+          "label": 0,
+          "score": 0.0143
+        },
+        {
+          "file": "aug_125_1806.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.98
+        },
+        {
+          "file": "aug_106_9567.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9945
+        },
+        {
+          "file": "aug_139_6369.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9892
+        },
+        {
+          "file": "aug_127_5710.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9956
+        },
+        {
+          "file": "aug_126_2342.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9972
+        },
+        {
+          "file": "aug_110_942.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9949
+        },
+        {
+          "file": "aug_122_8947.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9797
+        },
+        {
+          "file": "aug_146_5080.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9907
+        },
+        {
+          "file": "aug_123_7122.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9957
+        },
+        {
+          "file": "aug_128_22.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9982
+        },
+        {
+          "file": "aug_136_6003.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9952
+        },
+        {
+          "file": "aug_104_2563.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9418
+        },
+        {
+          "file": "aug_112_4031.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.994
+        },
+        {
+          "file": "aug_102_6938.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9926
+        },
+        {
+          "file": "aug_107_2247.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9966
+        },
+        {
+          "file": "aug_11_9225.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9804
+        },
+        {
+          "file": "aug_135_6857.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9968
+        },
+        {
+          "file": "aug_124_1479.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9215
+        },
+        {
+          "file": "aug_11_6659.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9856
+        },
+        {
+          "file": "aug_142_8692.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9939
+        },
+        {
+          "file": "aug_110_6190.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.997
+        },
+        {
+          "file": "aug_141_1780.jpg",
+          "split": "test",
+          "label": 1,
+          "score": 0.9958
+        },
+        {
+          "file": "aug_109_9290.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9926
+        },
+        {
+          "file": "aug_141_8105.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9923
+        },
+        {
+          "file": "aug_142_4911.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9924
+        },
+        {
+          "file": "aug_147_8942.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9918
+        },
+        {
+          "file": "aug_136_1982.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9907
+        },
+        {
+          "file": "aug_146_9453.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9946
+        },
+        {
+          "file": "aug_116_1707.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9917
+        },
+        {
+          "file": "aug_110_6820.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9419
+        },
+        {
+          "file": "aug_108_3299.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9989
+        },
+        {
+          "file": "aug_105_6924.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9827
+        },
+        {
+          "file": "aug_122_9770.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9961
+        },
+        {
+          "file": "aug_104_1344.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9321
+        },
+        {
+          "file": "aug_114_8032.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9775
+        },
+        {
+          "file": "aug_147_9191.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9979
+        },
+        {
+          "file": "aug_118_6360.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9963
+        },
+        {
+          "file": "aug_10_3962.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9854
+        },
+        {
+          "file": "aug_101_1736.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9942
+        },
+        {
+          "file": "aug_111_243.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9811
+        },
+        {
+          "file": "aug_146_7113.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.997
+        },
+        {
+          "file": "aug_128_7960.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9952
+        },
+        {
+          "file": "aug_129_2042.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.9954
+        },
+        {
+          "file": "aug_105_8276.jpg",
+          "split": "val",
+          "label": 1,
+          "score": 0.997
+        }
+      ]
+    }
+  }
+}
