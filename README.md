@@ -20,8 +20,8 @@ worker without pretending to replace the clinician.
 One local application that:
 
 1. **Validates** every upload (format, corruption, size, aspect ratio, blur, exposure, exact duplicates).
-2. **Routes** the image to the right specialist with a trained *gatekeeper* modality classifier, or by
-   manual selection, which never skips validation.
+2. **Checks suitability** with deterministic quality and coarse image-type checks; the user selects the
+   disease specialist. The legacy modality classifier is not part of screening or scoring.
 3. **Screens** with a disease-specific EfficientNet-B0 (ONNX Runtime, CPU), applying a validated threshold and an
    **uncertainty band** that produces `INCONCLUSIVE` instead of a forced answer.
 4. **Explains** with Grad-CAM, but only when the PyTorch checkpoint provably matches the ONNX model.
@@ -37,11 +37,11 @@ flowchart TD
     A -->|fail| R[Rejection event<br/>code + explanation + fix + timestamp]
     A --> D[SHA-256 duplicate check]
     D -->|duplicate & not allowed| R
-    D --> G{Stage B: gatekeeper}
-    G -->|chest X-ray| TB[TB model]
-    G -->|fundus| DR[DR model]
-    G -->|histopathology| OR[Oral cancer model]
-    G -->|unsupported / uncertain| R
+    D --> S{Selected disease specialist}
+    S -->|TB| TB[TB model]
+    S -->|DR| DR[DR model]
+    S -->|Oral cancer| OR[Oral cancer model]
+    S -->|missing selection / unsuitable input| R
     TB & DR & OR --> P[Threshold + uncertainty band<br/>FLAGGED · NO FLAG · INCONCLUSIVE]
     P --> X[Grad-CAM<br/>checkpoint ↔ ONNX consistency check]
     X --> C[Clinical decision support<br/>image rules ⟂ questionnaire rules]
@@ -54,7 +54,7 @@ flowchart TD
 | Layer | Location |
 |---|---|
 | Model registry, inference engine, preprocessing, artifact validation/import | `src/core/` |
-| Image quality, duplicate detection, modality gatekeeper, rejection codes | `src/gatekeeper/` |
+| Image quality, selected-modality suitability, duplicate detection, rejection codes | `src/gatekeeper/` |
 | TB / DR / oral specialist modules | `src/diseases/` |
 | Grad-CAM + visualisation | `src/explainability/` |
 | Recommendations, questionnaire rules, triage, EN/HI dictionary | `src/clinical/` |
@@ -72,8 +72,21 @@ Gradio 6 · Plotly · SQLite · FPDF2 + HarfBuzz shaping with Noto Sans / Noto S
 
 ## Models
 
-Three binary EfficientNet-B0 specialists plus an optional 4-class gatekeeper. All share the same
-backbone and the same eval preprocessing (`Resize(256) → CenterCrop(224) → ImageNet normalisation`).
+The operational baseline remains unchanged. Downloaded research candidates run
+locally in a separate database with `.venv/bin/python run_pretrained.py` after
+stopping the server on the same port. Research scores are not validated disease
+probabilities, and failed candidates are not promoted automatically.
+
+Current evidence and reproducible commands:
+[implementation status](docs/implementation-status.md),
+[model evaluation](docs/model-evaluation-report.md),
+[testing report](docs/testing-report.md), and
+[research setup](docs/RESEARCH_DEPLOYMENT.md).
+
+Three binary EfficientNet-B0 specialists. A legacy three-class gatekeeper checkpoint
+may be installed for historical evaluation, but is not loaded or used by screening.
+Preprocessing is model-specific and recorded in each installed metadata file;
+the installed specialists use exact 224×224 resizing, as described below.
 Specialist outputs are reported as a **model score**, not as a probability of disease.
 
 | Module | Architecture | Classes | Threshold | Installed version |
@@ -81,7 +94,7 @@ Specialist outputs are reported as a **model score**, not as a probability of di
 | TB | EfficientNet-B0 | Normal / Tuberculosis | 0.257 | `tb-aaa0b6fc` |
 | DR | EfficientNet-B0 | No_DR / DR *(any grade, not "referable")* | 0.010 | `dr-4740a5c2` |
 | Oral | EfficientNet-B0 | Normal / OSCC | 0.931 | `oral-ad94db8c` |
-| Gatekeeper | MobileNetV3-Small | chest_xray / fundus / histopathology (**no "other" class**) | routing ≥ 0.95 | `gatekeeper-6e0d292e` |
+| Legacy gatekeeper (not used at runtime) | MobileNetV3-Small | chest_xray / fundus / histopathology (**no "other" class**) | — | `gatekeeper-6e0d292e` |
 
 Models were trained externally (Gemini / Colab) and installed with
 `python scripts/convert_trained_outputs.py --src trained_outputs --import`. Gemini's metadata did not
@@ -115,7 +128,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 python scripts/make_demo_assets.py      # data/samples/ (test-split images + synthetic invalid inputs)
-python app.py                           # http://127.0.0.1:7860
+MEDISCAN_ORT_THREADS=2 python app.py     # http://127.0.0.1:7860
 ```
 
 The main page at `/` uses a responsive, charcoal-and-mint imaging studio. Upload a medical image,
@@ -151,7 +164,8 @@ atomically. Invalid models leave the previous version in place.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `MEDISCAN_DB` | `data/mediscan.db` | SQLite path |
+| `MEDISCAN_DB` | `data/mediscan.db` | SQLite path; research launcher defaults to `output/research/mediscan.db` |
+| `MEDISCAN_PROVIDER_CONFIG` | unset | Explicit local baseline/research or optional remote provider selection |
 | `MEDISCAN_ARTIFACTS_DIR` | `artifacts/` | installed models |
 | `MEDISCAN_RETAIN_IMAGES` | `0` | keep uploaded images (off by default for privacy) |
 | `MEDISCAN_DUPLICATE_POLICY` | `reject` | `reject` or `warn` for identical files |
@@ -205,7 +219,7 @@ depend on weight values.
 | ONNX session load (once, cached) | 135 ms | — |
 | Model file size | 15.9 MB | — |
 
-With the installed models, end-to-end screening of the sample images (validation + gatekeeper +
+With the installed models, end-to-end screening of the sample images (validation + selected specialist +
 specialist, excluding Grad-CAM) measured **42–146 ms** per image on the same machine.
 
 Grad-CAM (PyTorch, CPU, same machine) measured 3.9 s on the first call (including import and loading
@@ -215,10 +229,12 @@ Re-run the benchmark on the target clinic laptop.
 ## Tests
 
 ```bash
-pytest            # 108 tests
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/verify_local_pretrained.py --out output/pretrained-verification.json
+.venv/bin/python scripts/verify_launchers.py --out output/launcher-verification.json
 ```
 
-They cover validation, corrupt and duplicate images, gatekeeper routing, missing, invalid and corrupt models,
+They cover validation, corrupt and duplicate images, specialist selection, missing, invalid and corrupt models,
 preprocessing parity with torchvision, thresholds and uncertainty, invalid outputs, Grad-CAM failure modes,
 recommendations, EN/HI completeness, SQLite services, analytics, PDFs, safe archive import, the
 packager↔importer contract, and end-to-end workflows. Test models are **tiny synthetic ONNX graphs**
@@ -243,7 +259,9 @@ Full list: [docs/CLINICAL_LIMITATIONS.md](docs/CLINICAL_LIMITATIONS.md).
 - Abstains (`INCONCLUSIVE`) near the threshold, on out-of-distribution input, or on invalid output.
 - A "no flag" result is always worded as *not ruling out disease*.
 - Questionnaire rules are shown with rule IDs and never merged into a "combined probability".
-- Privacy by default: no names or phone numbers, images not stored, no external APIs, parameterised SQL, audit log.
+- Ordinary uploaded scans are not retained by default. Saved demo names/scans and named PDF snapshots
+  are retained locally. Default inference makes no external requests; remote providers require explicit
+  configuration. SQL is parameterised and actions are audited.
 - No fabricated metrics. Simulated outputs are labelled everywhere.
 
 ## Demo
