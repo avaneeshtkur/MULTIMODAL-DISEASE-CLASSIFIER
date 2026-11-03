@@ -52,7 +52,7 @@ def state_banner(registry) -> str:
         return ('<div class="ms-banner sim">SIMULATION MODE is on (MEDISCAN_SIMULATION=1): modules without an '
                 'installed model return SIMULATED scores for interface rehearsal. They are labelled everywhere '
                 'and are not screening results.</div>')
-    missing = [MODEL_NAMES[k] for k in config.MODEL_KEYS if not registry.is_available(k)]
+    missing = [MODEL_NAMES[k] for k in config.SPECIALIST_KEYS if not registry.is_available(k)]
     if not missing:
         return '<div class="ms-banner info">All models installed and validated.</div>'
     return ('<div class="ms-banner warn"><b>Incomplete-model state.</b> Not installed or invalid: '
@@ -65,7 +65,7 @@ def model_table_html(registry) -> str:
     rows = []
     for r in registry.status_rows():
         cls = {"available": "ok", "invalid": "bad"}.get(r["status"], "miss")
-        thr = "—" if r["threshold"] is None else f'{r["threshold"]:.3f}'
+        thr = "—" if r["threshold"] is None else f'{r["threshold"] * 100:.2f}%'
         err = f'<div class="ms-small">{escape(r["errors"])}</div>' if r["errors"] else ""
         rows.append(f'<tr><td>{escape(MODEL_NAMES[r["key"]])}{err}</td><td class="{cls}">{escape(r["status"])}</td>'
                     f'<td>{escape(str(r["version"]))}</td><td>{escape(r["classes"])}</td><td>{thr}</td>'
@@ -83,8 +83,8 @@ def cards_html(items: list[tuple[str, object]]) -> str:
 def how_it_works_html() -> str:
     steps = [("1 · Validate", "File format, corruption, size, aspect ratio, blur and exposure checks."),
              ("2 · Duplicate check", "Exact SHA-256 match against earlier screenings (never deletes)."),
-             ("3 · Route", "Trained gatekeeper detects modality, or you select the module manually."),
-             ("4 · Screen", "Specialist ONNX model on CPU, with a threshold and an uncertainty band."),
+             ("3 · Select specialist", "Choose TB, diabetic retinopathy, or oral cancer; disease is not inferred by the gate."),
+             ("4 · Screen", "The selected specialist produces the disease score; suitability checks do not change it."),
              ("5 · Explain", "Grad-CAM heatmap from the matching PyTorch checkpoint."),
              ("6 · Next steps", "Rule-based recommendations, kept separate from the model output, and a PDF report.")]
     return '<div class="ms-steps">' + "".join(
@@ -97,7 +97,9 @@ def _score_bar(score: float, thr: float, band, colour: str) -> str:
         band_html = f'<div class="band" style="left:{band[0] * 100:.1f}%;width:{(band[1] - band[0]) * 100:.1f}%"></div>'
     return (f'<div class="ms-scorebar">{band_html}<div class="thr" style="left:{thr * 100:.1f}%"></div>'
             f'<div class="dot" style="left:{score * 100:.1f}%;background:{colour}"></div></div>'
-            '<div class="ms-small">0 ─ model score ─ 1 · dark line = threshold · grey zone = uncertainty band</div>')
+            '<div class="ms-small">0% ─ model score ─ 100% · dark line = threshold · grey zone = uncertainty band. '
+            'The threshold is the cutoff for raising a flag. Scores near it are inconclusive; '
+            'a percentage score is not the probability of disease.</div>')
 
 
 def rejection_html(outcome, lang: str) -> str:
@@ -123,15 +125,19 @@ def result_html(outcome, lang: str, routing: str) -> str:
     if r.get("simulated"):
         parts.append(f'<div class="ms-banner sim">{escape(t("simulated_banner", lang))}</div>')
     reason = t(f"reason.{r['reason_code']}", lang) if r.get("reason_code") else ""
-    detail = r.get("reason") if r.get("reason_code") in ("OUT_OF_DISTRIBUTION", "MODEL_UNAVAILABLE") else ""
+    detail = r.get("reason") or ""
     score_html = ""
     if r.get("model_score") is not None and r.get("threshold") is not None:
         score_html = _score_bar(r["model_score"], r["threshold"], r.get("uncertainty_band"), STATUS_BG[status])
     rows = [("Module", t(f"disease.{r['disease']}", lang)), ("Routing", routing),
             ("Model output label", r.get("class_label") or "— (no label: inconclusive)"),
-            ("Model score", "—" if r.get("model_score") is None else f'{r["model_score"]:.3f} ({r.get("score_kind")})'),
-            ("Threshold", "—" if r.get("threshold") is None else f'{r["threshold"]:.3f}'),
+            ("Model score", "—" if r.get("model_score") is None else f'{r["model_score"] * 100:.2f}% ({r.get("score_kind")})'),
+            ("Threshold", "—" if r.get("threshold") is None else f'{r["threshold"] * 100:.2f}%'),
             ("Model version", r.get("model_version") or "—"),
+            ("Inference source", "SIMULATED" if r.get("simulated") else r.get('provider') or "Specialist ONNX model"),
+            ("Disease target", r.get('target_definition') or '—'),
+            ("Provider outcome", r.get('provider_status') or '—'),
+            ("Model fingerprint", (r.get("model_sha256") or "—")[:16]),
             ("Processing time", f'{r["processing_time_ms"]:.0f} ms'),
             ("Result ID", f"#{outcome.result_id}")]
     table = "".join(f'<tr><td class="k">{escape(k)}</td><td>{escape(str(v))}</td></tr>' for k, v in rows)
