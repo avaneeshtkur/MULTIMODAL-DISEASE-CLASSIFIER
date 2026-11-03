@@ -41,6 +41,11 @@ class ScreeningService:
                  referral_priority, result.get("processing_time_ms"), int(gradcam_available),
                  int(bool(result.get("simulated"))), int(is_demo), utcnow()))
             rid = cur.lastrowid
+            provenance = {k: result.get(k) for k in ('provider', 'provider_status', 'provider_request_id',
+                'target_definition', 'positive_class', 'preprocessing_version', 'decision_policy_version',
+                'raw_output', 'raw_positive_score', 'precise_model_score', 'score_kind', 'uncertainty_band')}
+            c.execute('INSERT INTO result_provenance(result_id,payload) VALUES (?,?)',
+                      (rid, json.dumps(provenance, allow_nan=False)))
             self.db.audit("screening_completed", "screening_result", rid,
                           {"disease": result["disease"], "status": result["prediction_status"],
                            "simulated": bool(result.get("simulated"))}, conn=c)
@@ -76,4 +81,7 @@ class ScreeningService:
         d = dict(row)
         d["questionnaire"] = json.loads(d.pop("questionnaire_json") or "null") or {}
         d["quality_metrics"] = json.loads(d.pop("quality_metrics_json") or "null") or {}
+        with self.db.connect() as c:
+            provenance = c.execute('SELECT payload FROM result_provenance WHERE result_id=?', (result_id,)).fetchone()
+        d['provenance'] = json.loads(provenance['payload']) if provenance else {}
         return d
