@@ -1,0 +1,126 @@
+[
+  {
+    "source": "https://radiopaedia.org/cases/pulmonary-tuberculosis-78",
+    "module_requested": "auto",
+    "status": "NO_FLAG_DETECTED",
+    "result": {
+      "disease": "tb",
+      "class_label": "Normal",
+      "model_score": 0.1597,
+      "score_kind": "uncalibrated model score",
+      "threshold": 0.25747474747474747,
+      "uncertainty_band": [
+        0.2126,
+        0.3081
+      ],
+      "prediction_status": "NO_FLAG_DETECTED",
+      "reason_code": null,
+      "reason": "",
+      "processing_time_ms": 724.1,
+      "model_version": "tb-aaa0b6fc",
+      "model_sha256": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+      "simulated": false
+    },
+    "routing": {
+      "modality": "chest_xray",
+      "source": "trained_gatekeeper",
+      "confidence": 1.0,
+      "probs": {
+        "chest_xray": 0.9999582143349603,
+        "fundus": 3.281764418799469e-05,
+        "histopathology": 8.968020851770046e-06
+      },
+      "hint": "greyscale/monochrome image (consistent with an X-ray)",
+      "rejection": null,
+      "note": null,
+      "processing_time_ms": 1300.2
+    },
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 31.818,
+      "brightness_mean": 132.53,
+      "p1": 1.0,
+      "p99": 208.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        132.5,
+        132.5,
+        132.5
+      ],
+      "dark_corner_frac": 0.315
+    },
+    "direct_tb_logit": [
+      [
+        -1.6601216793060303
+      ]
+    ],
+    "direct_tb_score": 0.1597456636208814,
+    "sha256": "456119bb1fc5bafa2df9f5c038585603eb509ef8b0febe40eeeca4719f755c50"
+  },
+  {
+    "source": "https://radiopaedia.org/cases/pulmonary-tuberculosis-78",
+    "module_requested": "tb",
+    "status": "NO_FLAG_DETECTED",
+    "result": {
+      "disease": "tb",
+      "class_label": "Normal",
+      "model_score": 0.1597,
+      "score_kind": "uncalibrated model score",
+      "threshold": 0.25747474747474747,
+      "uncertainty_band": [
+        0.2126,
+        0.3081
+      ],
+      "prediction_status": "NO_FLAG_DETECTED",
+      "reason_code": null,
+      "reason": "",
+      "processing_time_ms": 150.6,
+      "model_version": "tb-aaa0b6fc",
+      "model_sha256": "aaa0b6fcae7e672785e626e39f660f8708e2140d32165a339eb90837b98b1395",
+      "simulated": false
+    },
+    "routing": {
+      "modality": "chest_xray",
+      "source": "manual_selection+trained_gatekeeper",
+      "confidence": 1.0,
+      "probs": {
+        "chest_xray": 0.9999582143349603,
+        "fundus": 3.281764418799469e-05,
+        "histopathology": 8.968020851770046e-06
+      },
+      "hint": "greyscale/monochrome image (consistent with an X-ray)",
+      "rejection": null,
+      "note": null,
+      "processing_time_ms": 40.2
+    },
+    "quality": {
+      "width": 561,
+      "height": 740,
+      "aspect_ratio": 1.319,
+      "blur_laplacian_var": 31.818,
+      "brightness_mean": 132.53,
+      "p1": 1.0,
+      "p99": 208.0,
+      "white_frac": 0.0,
+      "saturation_mean": 0.0,
+      "hue_diversity": 0.0,
+      "mean_rgb": [
+        132.5,
+        132.5,
+        132.5
+      ],
+      "dark_corner_frac": 0.315
+    },
+    "direct_tb_logit": [
+      [
+        -1.6601216793060303
+      ]
+    ],
+    "direct_tb_score": 0.1597456636208814,
+    "sha256": "456119bb1fc5bafa2df9f5c038585603eb509ef8b0febe40eeeca4719f755c50"
+  }
+]
