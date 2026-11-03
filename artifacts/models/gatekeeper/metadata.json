@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "model_key": "gatekeeper",
+  "architecture": "mobilenet_v3_small",
+  "preprocessing": {
+    "color_mode": "rgb",
+    "resize": 224,
+    "resize_mode": "exact",
+    "center_crop": null,
+    "input_size": 224,
+    "interpolation": "bilinear",
+    "scale": "0_1",
+    "normalize": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "fundus_border_crop": false
+  },
+  "conversion": {
+    "source": "external trained_outputs (Gemini/Colab)",
+    "source_metadata": null,
+    "converted_at": "2026-11-02T13:31:38.673017+00:00",
+    "evidence": [
+      "ONNX (incl. external weights) matches hash-verified checkpoint: max |\u0394logit| 2.2e-05",
+      "preprocessing 'resize224_exact' selected; tie broken by mean top confidence 0.9995 vs 0.9995: 1.000 vs 'resize256_centercrop224' 1.000 (routing agreement, 300 bundled images incl. training data \u2014 identification only, not performance)",
+      "class order ['chest_xray', 'fundus', 'histopathology'] determined from 300 labelled images (100.0% agreement)",
+      "no 'other' class; 100.0% of valid images have top score \u2265 0.95 (min 0.969)"
+    ],
+    "preprocessing_scores": {
+      "resize256_centercrop224": 1.0,
+      "resize224_exact": 1.0
+    }
+  },
+  "model_version": "gatekeeper-6e0d292e",
+  "task": "multiclass",
+  "class_labels": [
+    "chest_xray",
+    "fundus",
+    "histopathology"
+  ],
+  "output": {
+    "type": "logit",
+    "activation": "softmax"
+  },
+  "routing": {
+    "min_confidence": 0.95,
+    "evidence": "no 'other' class; 100.0% of valid images have top score \u2265 0.95 (min 0.969)"
+  },
+  "sha256": {
+    "model.onnx": "6e0d292e933031a8306563032e97f3d0f5365c685f6088ef85941cd5c79f4a28",
+    "model.onnx.data": "615c5d38f05ad4697381a72c73b523f771123c9f00710ce67dd3b096b0c2e45a",
+    "best_model.pth": "1ea90054186884c23a1e932682980cbf2d194a4784a5262bdc3103944be26947"
+  }
+}
