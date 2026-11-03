@@ -119,6 +119,8 @@ def validate_image(data: bytes, filename: str) -> QualityResult:
         with warnings.catch_warnings():
             warnings.simplefilter("error", Image.DecompressionBombWarning)
             probe = Image.open(io.BytesIO(data))
+            if probe.width * probe.height > q['max_pixels']:
+                return _reject(rm.IMAGE_TOO_LARGE, sha, limit_mb=q['max_file_mb'])
             fmt = probe.format
             probe.verify()                       # structural check
             img = Image.open(io.BytesIO(data))
